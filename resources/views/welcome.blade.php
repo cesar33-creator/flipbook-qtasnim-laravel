@@ -70,7 +70,7 @@
         <div class="content">
             <div class="title m-b-md">
                 {!! $title !!}
-                //ahmad
+                //ahmads
             </div>
             <div class="links">
                 <a href="{{ url('/')}}">Wellcome</a>
