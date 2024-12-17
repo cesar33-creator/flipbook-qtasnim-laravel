@@ -7,60 +7,22 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */ 
     public function index()
     {
-        //
-        return view('dashboard');
-    }
+        // Data kategori (bisa diambil dari database)
+        $categories = [
+            (object) ['name' => 'General'],
+            (object) ['name' => 'Pustaka'],
+            (object) ['name' => 'HRGA'],
+            (object) ['name' => 'Finance'],
+            (object) ['name' => 'Project & Services'],
+            (object) ['name' => 'System & Design Analyst'],
+            (object) ['name' => 'Business Development'],
+            (object) ['name' => 'Public Relations & Partnership'],
+            (object) ['name' => 'Research & Technical Solution'],
+            (object) ['name' => 'Health Care Solution'],
+        ];
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Dashboard $dashboard)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Dashboard $dashboard)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Dashboard $dashboard)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Dashboard $dashboard)
-    {
-        //
+        return view('dashboard', compact('categories'));
     }
 }

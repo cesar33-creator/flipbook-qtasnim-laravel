@@ -1,0 +1,292 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #f4a71d 0%, #f4a71d 33%, #f9f9f9 33%, #f9f9f9 100%);
+}
+
+/* Tambahkan padding-top pada body atau container */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px auto;
+    max-width: 1200px;
+    padding-top: 80px; /* Disesuaikan dengan tinggi navbar */
+}
+
+.navbar {
+    border-bottom: 1px solid #ddd;
+    height: 70px; /* Pastikan ini sesuai dengan tinggi navbar */
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+
+.dropdown-menu {
+    width: 300px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.dropdown-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+}
+
+.dropdown-header img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+.dropdown-header .info {
+    margin-left: 10px;
+}
+
+.dropdown-header .username {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.dropdown-header .role {
+    font-size: 12px;
+    color: #6c757d;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    padding: 10px 15px;
+}
+
+.dropdown-divider {
+    margin: 10px 0;
+}
+
+.dropdown-item.logout {
+    color: #dc3545;
+    font-weight: bold;
+    text-align: center;
+}
+
+.dropdown-item.logout:hover {
+    background-color: #f8d7da;
+}
+
+#backButton {
+    position: fixed;
+    font-weight: bold;
+    top: 15%;
+    margin-left: 5px;
+} 
+
+.profile-card, .edit-profile {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 20px;
+}
+
+.profile-card h3{
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: #6c757d;
+}
+
+.profile-card h2 {
+    margin: 15px 0 5px;
+}
+
+
+.profile-card p {
+    color: #777;
+    margin: 10px 0;
+}
+
+.edit-profile {
+    flex: 1;
+    min-width: 500px;
+    max-width: 800px;
+}
+
+.edit-profile h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: #6c757d;
+}
+
+.edit-profile form {
+    display: grid;
+    gap: 15px;
+}
+
+.edit-profile label {
+    font-weight: bold;
+}
+
+.edit-profile input, .edit-profile select, .edit-profile textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.edit-profile button {
+    background-color: #f4a71d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-profile button:hover {
+    background-color: #e39600;
+}
+
+.back-btn {
+    display: inline-block;
+    margin: 20px;
+    padding: 10px 20px;
+    background-color: #f4a71d;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.back-btn:hover {
+    background-color: #e39600;
+}
+
+.password-field {
+    position: relative;
+}
+
+.password-field i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+/* Styling dropdown for minimalist look */
+.profile-camera-dropdown .dropdown-menu {
+    width: fit-content;
+    margin: 0;
+    padding: 0;
+    font-size: 0.85rem; 
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.profile-camera-dropdown .dropdown-item-delete,
+.profile-camera-dropdown .dropdown-item-change{
+    padding: 5px 10px; /* Reduce padding for compact look */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: none;
+    background-color: white;
+}
+
+
+.profile-camera-dropdown .dropdown-item-delete,
+.profile-camera-dropdown .dropdown-item-change:hover{
+    border: none;
+    border-radius: 5px;
+}
+
+.profile-camera-dropdown .dropdown-item-delete{
+    color: #dc3545;
+}
+
+.profile-camera-dropdown .dropdown-item-delete:hover{
+    background-color: #dc3545;
+    color: #fff;
+}
+
+
+.profile-camera-dropdown .dropdown-item-change{
+    color: #777;
+}
+
+.profile-camera-dropdown .dropdown-item-change:hover{
+    background-color:#777;
+    color: #fff;
+}
+
+
+.profile-camera-dropdown .dropdown-item i {
+    font-size: 0.9rem; /* Smaller icon size */
+}
+
+.profile-card {
+    position: relative; /* Tambahkan ini untuk mengatur posisi anak relatif ke card */
+    text-align: center;
+    max-width: 400px;
+    min-width: 300px;
+}
+
+.profile-picture {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+}
+
+.profile-camera-icon {
+    position: absolute; /* Ubah dari relative ke absolute */
+    bottom: 210px; /* Sesuaikan agar berada sedikit di bawah foto */
+    right: 120px; /* Geser sedikit ke kanan */
+    background-color: #ffb100;
+    color: #ffffff;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    z-index: 10; /* Pastikan ikon berada di depan gambar */
+    transform: translate(10%, 10%); /* Sesuaikan untuk presisi */
+    outline: 2px solid #ffffff; /* Tambahkan outline putih */
+    outline-offset: -2px; /* Atur jarak outline agar menyatu */
+}    
+
+.info-box {
+    display: flex;
+    align-items: center;
+    width: 350px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Keeps content inside rounded corners */
+  }
+
+  .icon-section {
+    background-color: #ffb100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 100px;
+  }
+
+  .iconify {
+    font-size: 50px; /* Ukuran ikon */
+    color: white; /* Warna ikon */
+  }
+
+  .text-section {
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+  }
+

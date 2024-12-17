@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
+Route::get('/profile', function () {
+    return view('profile');
+})->name('profile');
+
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 // Halaman utama
 Route::get('/', function () {
     return view('welcome', ['title' => 'Aplikasi FlipBook<br>PT QTasnim Digital Teknologi']);
