@@ -7,6 +7,7 @@ use App\Http\Controllers\PdfController;
 use App\Http\Controllers\UploadFileController;
 use App\Http\Controllers\UploadKaryawannControler;
 use App\Http\Controllers\UploadPanduanControler;
+use App\Http\Controllers\UserActivityController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -68,3 +69,6 @@ Route::get('/BukuPanduan/{id}', [UploadPanduanControler::class, 'show']);
 Route::resource('/UploadKaryawan', UploadKaryawannControler::class);
 Route::get('/BukuKaryawan', [UploadKaryawannControler::class, 'index']);
 Route::get('/BukuKaryawan/{id}', [UploadKaryawannControler::class, 'show']);
+
+//User Activity
+Route::get('/UserActivity', [UserActivityController::class, 'index']);
