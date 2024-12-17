@@ -21,6 +21,28 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 
+    <script>
+        $(document).ready(function() {
+            // Event untuk tombol back
+            $('#backButton').on('click', function() {
+                console.log('Back button clicked!');
+                if (window.history.length > 1) {
+                    window.history.back();
+                } else {
+                    alert('Tidak ada halaman sebelumnya.');
+                }
+            });
+
+            // Menutup navbar saat klik di luar
+            $(document).on('click', function(event) {
+                var target = $(event.target);
+                if (!target.closest('.navbar').length && !target.closest('.form-inline').length) {
+                    $('.navbar-collapse').collapse('hide');
+                }
+            });
+        });
+    </script>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
@@ -58,12 +80,12 @@
                     <a class="dropdown-item" href="{{ route('profile') }}">
                         <i class="fas fa-user"></i> Profile
                     </a>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="/UserActivity">
                         <i class="fas fa-chart-line"></i> Activity
                     </a>
                     <div class="dropdown-divider"></div>
                     <span class="dropdown-header">Management Account</span>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="/ManagementUsers">
                         <i class="fas fa-users-cog"></i> User
                     </a>
                     <div class="dropdown-divider"></div>
@@ -78,7 +100,7 @@
     <button class="btn btn-outline-danger back-btn position-absolute" id="backButton">
         <i class="fas fa-arrow-left"></i> Back
     </button>
-    
+
     <!-- Dashboard Title -->
     <div class="container mt-5 pt-5 text-center">
         <h1 class="my-5">Dashboard</h1>
@@ -117,7 +139,7 @@
                 </div>
             </div>
         </div>
-    
+
         <div class="row no-gutters"> <!-- Menambahkan kelas no-gutters -->
             <div class="col">
                 <div class="category-card">

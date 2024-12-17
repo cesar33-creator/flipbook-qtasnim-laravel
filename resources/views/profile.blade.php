@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,6 +35,26 @@
         }
 
         $(document).ready(function() {
+            // Event untuk tombol back
+            $('#backButton').on('click', function() {
+                console.log('Back button clicked!');
+                if (window.history.length > 1) {
+                    window.history.back();
+                } else {
+                    alert('Tidak ada halaman sebelumnya.');
+                }
+            });
+
+            // Menutup navbar saat klik di luar
+            $(document).on('click', function(event) {
+                var target = $(event.target);
+                if (!target.closest('.navbar').length && !target.closest('.form-inline').length) {
+                    $('.navbar-collapse').collapse('hide');
+                }
+            });
+        });
+
+        $(document).ready(function() {
             // Update the gender icon based on the selected gender
             $('#gender').on('change', function() {
                 var gender = $(this).val();
@@ -54,6 +75,7 @@
         });
     </script>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
@@ -82,12 +104,12 @@
                     <a class="dropdown-item" href="{{ route('profile') }}">
                         <i class="fas fa-user"></i> Profile
                     </a>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="/UserActivity">
                         <i class="fas fa-chart-line"></i> Activity
                     </a>
                     <div class="dropdown-divider"></div>
                     <span class="dropdown-header">Management Account</span>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="/ManagementUsers">
                         <i class="fas fa-users-cog"></i> User
                     </a>
                     <div class="dropdown-divider"></div>
@@ -109,7 +131,7 @@
             <div class="position-relative">
                 <!-- Profile Picture -->
                 <img src="{{ asset('assets/Photo by Dan Cornilov.png') }}" alt="Profile Picture" class="profile-picture">
-                
+
                 <!-- Dropdown for camera icon -->
                 <div class="dropdown profile-camera-dropdown">
                     <i class="fas fa-camera profile-camera-icon" id="cameraDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
@@ -126,15 +148,15 @@
                     <div class="info-box">
                         <!-- Left Icon Section -->
                         <div class="icon-section">
-                          <span class="iconify" data-icon="material-symbols-light:add-notes-outline"></span>
+                            <span class="iconify" data-icon="material-symbols-light:add-notes-outline"></span>
                         </div>
                         <!-- Right Text Section -->
                         <div class="text-section">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Animi quo velit consequuntur, iste.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Animi quo velit consequuntur, iste.
                         </div>
-                      </div>
+                    </div>
                 </div>
-            </div>            
+            </div>
         </div>
 
         <div class="edit-profile">
@@ -153,43 +175,43 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                    <label for="role">Role</label>
-                    <input type="text" id="role" name="role" value="Admin" disabled>
+                        <label for="role">Role</label>
+                        <input type="text" id="role" name="role" value="Admin" disabled>
                     </div>
 
                     <div class="col-md-6">
-                    <label for="password">Password</label>
-                    <div class="password-field">
-                        <input type="password" id="password" name="password" value="password123">
-                        <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
-                    </div>
+                        <label for="password">Password</label>
+                        <div class="password-field">
+                            <input type="password" id="password" name="password" value="password123">
+                            <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
+                        </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-6">
-                    <label for="gender">Gender</label>
-                    <select id="gender" name="gender">
-                        <option value="Male" selected>Male</option>
-                        <option value="Female">Female</option>
-                    </select>
+                        <label for="gender">Gender</label>
+                        <select id="gender" name="gender">
+                            <option value="Male" selected>Male</option>
+                            <option value="Female">Female</option>
+                        </select>
                     </div>
 
                     <div class="col-md-6">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" value="+628887689">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" value="+628887689">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-6">
-                    <label for="address">Address</label>
-                    <textarea id="address" name="address"></textarea>
+                        <label for="address">Address</label>
+                        <textarea id="address" name="address"></textarea>
                     </div>
 
                     <div class="col-md-6">
-                    <label for="bio">Bio</label>
-                    <textarea id="bio" name="bio"></textarea>
+                        <label for="bio">Bio</label>
+                        <textarea id="bio" name="bio"></textarea>
                     </div>
                 </div>
 
@@ -198,4 +220,5 @@
         </div>
     </div>
 </body>
+
 </html>
