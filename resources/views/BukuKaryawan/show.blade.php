@@ -99,7 +99,7 @@
 
             //Share File
             document.getElementById('btnShare').addEventListener('click', function() {
-                const fileUrl = "{{ asset('storage/' . $data->file_buku) }}"; // Absolute path file
+                const fileUrl = "{{ Storage::url($data->file_buku) }}"; // URL publik dari storage Laravel
                 const fileName = "{{ $data->nama_buku }}"; // Nama file buku
 
                 // Tampilkan dialog SweetAlert dengan opsi berbagi
@@ -134,6 +134,7 @@
                     }
                 });
             });
+
         });
     </script>
 
