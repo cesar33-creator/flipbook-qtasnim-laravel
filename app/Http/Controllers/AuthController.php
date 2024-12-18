@@ -34,4 +34,9 @@ class AuthController extends Controller
 
         return redirect('/');
     }
+
+    public function register()
+    {
+        return view('auth.register');
+    }
 }
