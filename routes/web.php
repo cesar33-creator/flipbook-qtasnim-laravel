@@ -55,9 +55,10 @@ Route::get('/BukuKaryawan', function () {
     return view('BukuKaryawan.BukuKaryawan');
 });
 // ManagementUsers Page
+Route::resource('ManagementUsers', ManagementUsersController::class);
 Route::get('/ManagementUsers', [ManagementUsersController::class, 'index'])->name('index');
 Route::get('ManagementUsers/create', [ManagementUsersController::class, 'create'])->name('create');
-Route::post('/ManagementUsers', [ManagementUsersController::class, 'store'])->name('store');
+Route::post('/ManagementUsers', [ManagementUsersController::class, 'store'])->name('ManagementUsers.store');
 Route::get('/ManagementUsers/show', [ManagementUsersController::class, 'show'])->name('show');
 Route::get('/ManagementUsers/{Name}/edit', [ManagementUsersController::class, 'edit'])->name('edit');
 Route::put('/ManagementUsers/{Name}', [ManagementUsersController::class, 'update'])->name('update');

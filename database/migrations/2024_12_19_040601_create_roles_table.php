@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('upload_files', function (Blueprint $table) {
-            $table->string('idbuku')->primary();
-            $table->string('nama_buku');
-            $table->string('file_buku');
-            $table->string('image_buku');
-            $table->timestamps();
+        Schema::create('roles', function (Blueprint $table) {
+            $table->string('id')->primary();
+            $table->string('roles');
         });
     }
 
@@ -25,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('upload_files');
+        Schema::dropIfExists('roles');
     }
 };

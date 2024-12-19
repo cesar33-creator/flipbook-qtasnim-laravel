@@ -32,21 +32,31 @@ class ManagementUsersController extends Controller
      */
     public function store(Request $request)
     {
-        // dd('store');
+        // Validasi input data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
         try {
-            $query = DB::table('users')->insert([
-                'Name' => $request->name,
-                'Email' => $request->email,
-                // 'Roles' => $request->roles,
-                // 'Photo' => $request->photo
+            // Menyimpan data ke database
+            DB::table('users')->insert([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password), // Enkripsi password
+                'Roles' => $request->roles, // Uncomment jika ingin menambahkan kolom roles
+                'Photo' => $request->photo // Uncomment jika ingin menambahkan kolom photo
             ]);
 
-
-            return  redirect('/ManagamentUsers')->with('status', 'Data Users berhasil ditambah..');
-        } catch (\Illuminate\Database\QueryException $ex) {
-            return  redirect('/ManagementUsers')->with('status', $ex);
+            // Redirect dengan pesan sukses
+            return redirect('/ManagementUsers')->with('status', 'Data Users berhasil ditambahkan.');
+        } catch (\Exception $ex) {
+            // Redirect dengan pesan error
+            return redirect('/ManagementUsers')->with('status', 'Gagal menambahkan data: ' . $ex->getMessage());
         }
     }
+
 
     /**
      * Display the specified resource.

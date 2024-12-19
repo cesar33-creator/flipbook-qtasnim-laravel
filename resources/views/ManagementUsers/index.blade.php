@@ -138,8 +138,11 @@
             <thead>
                 <tr>
                     <th>No.</th>
+                    <th>Photo</th>
                     <th>Name</th>
+                    <th>Phone</th>
                     <th>Email</th>
+                    <th>Role</th>
                     <th>Ubah</th>
                     <th>Hapus</th>
                 </tr>
@@ -148,8 +151,11 @@
                 @foreach ($user as $item)
                 <tr>
                     <td>{{$loop -> iteration}}</td>
+                    <td>{{$item -> photo}}</td>
                     <td>{{$item -> name}}</td>
+                    <td>{{$item -> phone}}</td>
                     <td>{{$item -> email}}</td>
+                    <td>{{$item -> role}}</td>
 
                     <td><a href="{{ url('ManagementUsers/' .$item->name.'/edit')}}" class="btn btn-success btn-sm">
                             <span class="bi bi-pencil-square" style="font-size:12px"></span></a> </td>
