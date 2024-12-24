@@ -22,120 +22,44 @@
 
     <!-- Include JS -->
     <script src="{{ asset('assets/js/flipbook.min.js') }}"></script>
+    <script src="{{ asset('assets/js/show.flipbook.js') }}"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#read").flipBook({
-                //Layout Setting
-                pdfUrl: "{{ asset('storage/' . $data->file_buku) }}",
-                lightBox: true,
-                layout: 3,
-                currentPage: {
-                    vAlign: "bottom",
-                    hAlign: "left"
-                },
-                // BTN SETTING
-                btnShare: {
-                    enabled: false
-                },
-                btnPrint: {
-                    hideOnMobile: true
-                },
-                btnColor: 'rgb(255,120,60)',
-                sideBtnColor: 'rgb(255,120,60)',
-                sideBtnSize: 60,
-                sideBtnBackground: "rgba(0,0,0,.7)",
-                sideBtnRadius: 60,
-                btnBookmark: {
-                    enabled: false
-                }, // Pastikan ini ditambahkan
-                btnSound: {
-                    vAlign: "top",
-                    hAlign: "left"
-                },
-                btnAutoplay: {
-                    vAlign: "top",
-                    hAlign: "left"
-                },
-            });
-
-            $('#btnBack').on('click', function() {
-                window.history.back();
-            });
-
-            //Alert Delete
-            document.getElementById('btnDeletePd').addEventListener('click', function(e) {
-                e.preventDefault(); // Prevent the form from submitting immediately
-
-                const swalWithBootstrapButtons = Swal.mixin({
-                    customClass: {
-                        confirmButton: 'btn btn-success mx-2',
-                        cancelButton: 'btn btn-danger mx-2'
-                    },
-                    buttonsStyling: false
-                });
-
-                swalWithBootstrapButtons.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Yes, delete it!',
-                    cancelButtonText: 'No, cancel!',
-                    reverseButtons: true
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Submit the form if confirmed
-                        document.getElementById('deleteForm').submit();
-                    } else if (result.dismiss === Swal.DismissReason.cancel) {
-                        swalWithBootstrapButtons.fire({
-                            title: 'Cancelled',
-                            text: 'Your file is safe :)',
-                            icon: 'error'
-                        });
-                    }
-                });
-            });
-
-            //Share File
-            document.getElementById('btnShare').addEventListener('click', function() {
-                const fileUrl = "{{ asset('storage/' . $data->file_buku) }}"; // Absolute path file
-                const fileName = "{{ $data->nama_buku }}"; // Nama file buku
-
-                // Tampilkan dialog SweetAlert dengan opsi berbagi
-                Swal.fire({
-                    title: 'Bagikan File',
-                    text: 'Salin tautan file ini untuk dibagikan:',
-                    input: 'text',
-                    inputValue: fileUrl,
-                    showCancelButton: true,
-                    confirmButtonText: 'Salin Tautan',
-                    cancelButtonText: 'Tutup',
-                    inputAttributes: {
-                        readonly: true
-                    }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Salin tautan ke clipboard
-                        navigator.clipboard.writeText(fileUrl).then(() => {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Tautan berhasil disalin!',
-                                text: 'Anda dapat membagikan tautan ini sekarang.',
-                            });
-                        }).catch((error) => {
-                            console.error('Gagal menyalin tautan:', error);
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Gagal menyalin tautan!',
-                                text: 'Silakan coba lagi.',
-                            });
-                        });
-                    }
-                });
-            });
-
+        $("#read").flipBook({
+            //Layout Setting
+            pdfUrl: "{{ asset('storage/' . $data->file_buku) }}",
+            lightBox: true,
+            layout: 3,
+            currentPage: {
+                vAlign: "bottom",
+                hAlign: "left"
+            },
+            // BTN SETTING
+            btnShare: {
+                enabled: false
+            },
+            btnPrint: {
+                hideOnMobile: true
+            },
+            btnColor: 'rgb(255,120,60)',
+            sideBtnColor: 'rgb(255,120,60)',
+            sideBtnSize: 60,
+            sideBtnBackground: "rgba(0,0,0,.7)",
+            sideBtnRadius: 60,
+            btnBookmark: {
+                enabled: false
+            }, // Pastikan ini ditambahkan
+            btnSound: {
+                vAlign: "top",
+                hAlign: "left"
+            },
+            btnAutoplay: {
+                vAlign: "top",
+                hAlign: "left"
+            },
         });
+    });
     </script>
 
     <style>
@@ -183,7 +107,7 @@
             </button>
 
             <!-- Button Delete -->
-            <form action="/UploadPanduan/{{ $data->id }}" method="post" id="deleteForm" class="p-0 m-0">
+            <form action="/UploadPanduan/{{ $data->idbuku }}" method="post" id="deleteForm" class="p-0 m-0">
                 @csrf
                 @method('delete')
                 <button type="button" class="btn btn-outline-danger" id="btnDeletePd">

@@ -68,7 +68,7 @@
             <label for="photo" class="col-md-3 col-form-label">Photo :</label>
             <div class="col-md-9">
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="photo" name="photo" accept="image/*" required>
+                    <input class="custom-file-input" type="file" id="photo" name="photo" accept="image/*">
                     <label class="custom-file-label" for="photo">Choose file</label>
                 </div>
             </div>

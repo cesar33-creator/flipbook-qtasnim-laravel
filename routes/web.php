@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FlipBookController;
+use App\Http\Controllers\ManagementRolesController;
 use App\Http\Controllers\ManagementUsersController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\UploadFileController;
@@ -54,15 +55,26 @@ Route::get('/BukuPanduan', function () {
 Route::get('/BukuKaryawan', function () {
     return view('BukuKaryawan.BukuKaryawan');
 });
+
 // ManagementUsers Page
 Route::resource('ManagementUsers', ManagementUsersController::class);
-Route::get('/ManagementUsers', [ManagementUsersController::class, 'index'])->name('index');
+Route::get('/ManagementUsers', [ManagementUsersController::class, 'index'])->name('ManagementUsers.users');
 Route::get('ManagementUsers/create', [ManagementUsersController::class, 'create'])->name('create');
 Route::post('/ManagementUsers', [ManagementUsersController::class, 'store'])->name('ManagementUsers.store');
 Route::get('/ManagementUsers/show', [ManagementUsersController::class, 'show'])->name('show');
 Route::get('/ManagementUsers/{Name}/edit', [ManagementUsersController::class, 'edit'])->name('edit');
 Route::put('/ManagementUsers/{Name}', [ManagementUsersController::class, 'update'])->name('update');
 Route::delete('/ManagementUsers/{Name}', [ManagementUsersController::class, 'destroy'])->name('destroy');
+
+// ManagementRoles Page
+Route::resource('ManagementRoles', ManagementRolesController::class);
+Route::get('/ManagementRoles', [ManagementRolesController::class, 'index'])->name('ManagementRoles.roles');
+Route::get('ManagementRoles/create', [ManagementRolesController::class, 'create'])->name('create');
+Route::post('/ManagementRoles', [ManagementRolesController::class, 'store'])->name('ManagementRoles.store');
+Route::get('/ManagementRoles/show', [ManagementRolesController::class, 'show'])->name('show');
+Route::get('/ManagementRoles/{id}/edit', [ManagementRolesController::class, 'edit'])->name('edit');
+Route::put('/ManagementRoles/{id}', [ManagementRolesController::class, 'update'])->name('update');
+Route::delete('/ManagementRoles/{id}', [ManagementRolesController::class, 'destroy'])->name('destroy');
 
 // Flipbook
 Route::get('/KodeEtik', [FlipBookController::class, 'KodeEtik'])->name('KodeEtik');
@@ -76,17 +88,17 @@ Route::post('/logout', [AuthController::class, 'logout']);
    // //Upload Pdf & Delete BukuKhusus
 Route::resource('/UploadFile', UploadFileController::class);
 Route::get('/BukuKhusus', [UploadFileController::class, 'index'])->middleware('auth');    // Hanya dapat diakses oleh yang sudah login
-Route::get('/BukuKhusus/{id}', [UploadFileController::class, 'show'])->middleware('auth');
+Route::get('/BukuKhusus/{idbuku}', [UploadFileController::class, 'show'])->middleware('auth');
 
 // //Upload Pdf & Delete BukuPanduan
 Route::resource('/UploadPanduan', UploadPanduanControler::class);
 Route::get('/BukuPanduan', [UploadPanduanControler::class, 'index']);
-Route::get('/BukuPanduan/{id}', [UploadPanduanControler::class, 'show']);
+Route::get('/BukuPanduan/{idbuku}', [UploadPanduanControler::class, 'show']);
 
 // //Upload Pdf & Delete BukuKaryawan
 Route::resource('/UploadKaryawan', UploadKaryawannControler::class);
 Route::get('/BukuKaryawan', [UploadKaryawannControler::class, 'index']);
-Route::get('/BukuKaryawan/{id}', [UploadKaryawannControler::class, 'show']);
+Route::get('/BukuKaryawan/{idbuku}', [UploadKaryawannControler::class, 'show']);
 
 //User Activity
 Route::get('/UserActivity', [UserActivityController::class, 'index']);

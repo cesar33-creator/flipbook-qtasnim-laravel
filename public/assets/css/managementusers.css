@@ -1,0 +1,160 @@
+/* General Styles */
+.top-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+}
+
+/* Filter tabs styling */
+.filter-tabs {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 200px;
+}
+
+/* Gaya untuk tombol Users (a) dan Roles (a) */
+.filter-tabs a {
+    flex: 1;
+    padding: 10px;
+    background-color: #fff;
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-size: 16px;
+    color: #6c757d;
+    cursor: pointer;
+    outline: none;
+    text-align: center;
+    text-decoration: none; /* Hilangkan underline pada <a> */
+    transition: all 0.3s;
+}
+
+/* Gaya untuk tombol aktif */
+.filter-tabs a.active {
+    color: #000;
+    border-bottom: 2px solid #f7c843; /* Warna kuning untuk tab aktif */
+    font-weight: bold;
+}
+
+/* Hover efek */
+.filter-tabs a:hover {
+    color: #000;
+}
+
+/* Action buttons */
+.action-buttons {
+    margin-right: 20px;
+}
+
+.h3 {
+    margin-left: 20px;
+}
+
+.action-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.action-bar .form-inline {
+    flex-grow: 2;
+    padding-right: 2px;
+    justify-content: center;
+    margin-right: 12px; /* Menambahkan ruang kanan */
+}
+
+/* Table Styles */
+.table-wrapper {
+    padding: 0 15px; /* Tambahkan jarak kanan dan kiri */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.datatable {
+    border: 1px solid #ccc;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.datatable th, .datatable td {
+    text-align: left;
+    padding: 8px;
+}
+
+/* Responsif Table */
+@media (max-width: 768px) {
+    /* Tabel responsif dengan scroll horizontal */
+    .datatable-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling untuk iOS */
+        padding: 0 12px; /* Tambahkan jarak kanan dan kiri */
+    }
+
+    table {
+        width: 100%; /* Pastikan tabel penuh dalam wrapper */
+        border: none;
+        overflow-x: auto; /* Membuat tabel bisa scroll secara horizontal */
+        white-space: nowrap; /* Menghindari teks terpotong */
+    }
+
+    table th, table td {
+        font-size: 14px;
+        padding: 5px;
+    }
+
+    table th {
+        background-color: #f7f7f7;
+    }
+
+    .action-bar .form-inline {
+        margin-right: 12px; /* Pastikan ada ruang kanan saat responsif */
+    }
+
+    .datatable th, .datatable td {
+        padding: 5px;
+    }
+}
+
+/* Table Styling untuk layar lebih kecil (max-width: 480px) */
+@media (max-width: 480px) {
+    .datatable-wrapper {
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 0 5px; /* Kurangi jarak kanan dan kiri untuk layar kecil */
+    }
+
+    table th, table td {
+        font-size: 12px;
+        padding: 4px;
+    }
+
+    .datatable th, .datatable td {
+        padding: 4px;
+    }
+
+    /* Optimasi teks yang panjang */
+    table td {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 150px; /* Batas lebar untuk kolom */
+    }
+}
