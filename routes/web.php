@@ -8,17 +8,21 @@ use App\Http\Controllers\PdfController;
 use App\Http\Controllers\UploadFileController;
 use App\Http\Controllers\UploadKaryawannControler;
 use App\Http\Controllers\UploadPanduanControler;
+use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\UserActivityController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-Route::get('/profile', function () {
-    return view('profile');
-})->name('profile');
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::get('/General', function () {
+    return view('General.General');
+});
 
 // Halaman utama
 Route::get('/', function () {
@@ -87,6 +91,11 @@ Route::get('/BukuPanduan/{id}', [UploadPanduanControler::class, 'show']);
 Route::resource('/UploadKaryawan', UploadKaryawannControler::class);
 Route::get('/BukuKaryawan', [UploadKaryawannControler::class, 'index']);
 Route::get('/BukuKaryawan/{id}', [UploadKaryawannControler::class, 'show']);
+
+// //Upload Pdf & Delete Buku General
+Route::resource('/UploadGeneral', GeneralController::class);
+Route::get('/General', [GeneralController::class, 'index']);
+Route::get('/General/{id}', [GeneralController::class, 'show']);
 
 //User Activity
 Route::get('/UserActivity', [UserActivityController::class, 'index']);

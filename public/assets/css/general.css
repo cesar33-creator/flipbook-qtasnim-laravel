@@ -1,0 +1,89 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+
+.bookshelf {
+    width: 50%;
+    margin: 20px auto;
+    padding: 20px;
+    background: linear-gradient(to bottom, #B0B0B0 0%, #8C8C8C 50%, #A9A9A9 100%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bookshelf-title {
+    margin: 100px auto 20px; /* Margin atas 100px untuk memberi jarak dari navbar */
+    padding: 20px;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: black;
+    text-align: center;
+}
+
+.shelves {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.shelf {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 150px;
+}
+
+.shelf img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Gambar akan sesuai dengan rak tanpa terpotong */
+    display: none; /* Rak hanya muncul jika ada buku */
+}
+
+.book {
+    width: 80px;
+    height: 120px;
+    margin: 0 10px;
+    background-size: cover;
+    background-position: center;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.shelf.has-books img {
+    display: block; /* Rak muncul jika ada buku */
+}
+
+.upload-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff9800;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.upload-btn:hover {
+    background-color: #e68900;
+}
+
+#backButton {
+    position: fixed;
+    font-weight: bold;
+    top: 20%;
+    margin-left: 5px;
+}

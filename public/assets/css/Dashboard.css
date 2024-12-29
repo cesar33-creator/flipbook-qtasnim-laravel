@@ -11,10 +11,6 @@ h1 {
 }
 
 /* Navbar Styling */
-.navbar {
-    border-bottom: 1px solid #ddd;
-}
-
 .dropdown-menu {
     width: 300px;
     padding: 15px;
@@ -123,23 +119,50 @@ h1 {
 .col {
     padding: 0;
 }
+
+.search-button{
+    display: block !important;
+    border-radius: 0 5px 5px 0 !important;
+}
+
+.search-icon{
+    display: none !important;
+}
+
+
 /* Responsive */
 @media (max-width: 768px) {
-    .category-card {
-        margin-bottom: 20px;
+
+    img{
+        width: 90px;
     }
 
-    .dropdown-header img {
-        width: 50px;
-        height: 50px;
+    .form-inline{
+        width: 50%;
     }
 
-    .dropdown-header .username {
-        font-size: 1rem;
+    .row.no-gutters {
+        display: flex;
+        flex-direction: column; /* Susun elemen secara vertikal */
+        gap: 10px; /* Jarak antar elemen tetap */
     }
 
-    .dropdown-header .role {
-        font-size: 0.8rem;
+    .col {
+        flex: 1 1 100%; /* Hanya 1 kolom */
     }
+
+    .search-button{
+        display: none !important;
+    }
+
+    .search-icon{
+        display: block !important;
+        border-radius: 0 5px 5px 0 !important;
+    }
+
+    
+
 }
+
+
 
