@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('upload_files', function (Blueprint $table) {
-            $table->string('uid')->after('deskripsi_buku')->required();
+            $table->unsignedBigInteger('uid')->nullable()->after('deskripsi_buku')->required();
             $table->foreign('uid')->references('uid')->on('users');
         });
     }
@@ -23,6 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('upload_files', function (Blueprint $table) {
+            $table->dropForeign(['uid']); // Hapus foreign key sebelum menghapus kolom
             $table->dropColumn('uid');
         });
     }

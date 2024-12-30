@@ -71,10 +71,10 @@ class UploadPanduanControler extends Controller
      * @param int $id
      * @return \Illuminate\View\View
      */
-    public function show($id)
+    public function show($idbuku)
     {
         // Ambil data buku dari database berdasarkan ID
-        $data = UploadFile::findOrFail($id);
+        $data = UploadFile::findOrFail($idbuku);
 
         // Path lengkap file PDF di storage
         $filePath = storage_path('app/public/' . $data->file_buku);
