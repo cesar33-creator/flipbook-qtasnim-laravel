@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('phone_number', 12);
             $table->string('bio');
             $table->string('foto');
+            $table->timestamps();
         });
     }
 

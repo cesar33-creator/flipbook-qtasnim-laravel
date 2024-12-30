@@ -115,7 +115,6 @@
                         <th>Email</th>
                         <th>Role</th>
                         <th>Gender</th>
-                        <th>Phone Number</th>
                         <th>Bio</th>
                         <th>Ubah</th>
                         <th>Hapus</th>
@@ -125,13 +124,11 @@
                     @foreach ($user as $item)
                     <tr>
                         <td>{{$loop -> iteration}}</td>
-                        <td>{{$item -> photo}}</td>
+                        <td>{{$item -> foto}}</td>
                         <td>{{$item -> name}}</td>
-                        <td>{{$item -> phone}}</td>
-                        <td>{{$item -> email}}</td>
-                        <td>{{$item -> role}}</td>
-                        <td>{{$item -> gender}}</td>
                         <td>{{$item -> phone_number}}</td>
+                        <td>{{$item -> email}}</td>
+                        <td>{{$item -> gender}}</td>
                         <td>{{$item -> bio}}</td>
 
                         <td><a href="{{ url('ManagementUsers/' .$item->name.'/edit')}}" class="btn btn-success btn-sm">

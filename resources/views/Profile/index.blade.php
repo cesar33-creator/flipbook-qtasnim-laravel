@@ -13,7 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <!-- jQuery and Bootstrap JS -->
+    <!-- jQuery, Bootstrap JS and Iconify -->
     <script src="https://code.iconify.design/3/3.0.0/iconify.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -73,53 +73,46 @@
             // Trigger the change event to set the initial icon
             $('#gender').trigger('change');
         });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const profilePhoto = document.getElementById("profilePhoto");
+            const photoInput = document.getElementById("photoInput");
+            const changePhotoButton = document.getElementById("changePhotoButton");
+            const deletePhotoButton = document.getElementById("deletePhotoButton");
+
+            // Default profile photo URL
+            const defaultPhoto = "default-photo.jpeg";
+
+            // Event listener for "Change Photo"
+            changePhotoButton.addEventListener("click", () => {
+                photoInput.click(); // Trigger file input
+            });
+
+            photoInput.addEventListener("change", () => {
+                const file = photoInput.files[0];
+                if (file) {
+                    const reader = new FileReader();
+
+                    // Display the selected photo
+                    reader.onload = (e) => {
+                        profilePhoto.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Event listener for "Delete Photo"
+            deletePhotoButton.addEventListener("click", () => {
+                profilePhoto.src = defaultPhoto; // Reset to default photo
+            });
+        });
+
     </script>
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
-        <a class="navbar-brand position-relative" href="#">
-            <img src="{{ asset('assets/Logo-Qtasnim-Digital-Teknologi.png') }}" alt="Qtasnim LOGO" width="150">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Profile Dropdown -->
-            <div class="dropdown ml-auto">
-                <a class="dropdown-toggle text-decoration-none" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="{{ asset('assets/Photo by Dan Cornilov.png') }}" style="width: 40px" alt="Avatar" class="rounded-circle">
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                    <div class="dropdown-header d-flex align-items-center">
-                        <img src="{{ asset('assets/Photo by Dan Cornilov.png') }}" alt="Avatar" class="rounded-circle" style="width: 40px; height: 40px;">
-                        <div class="info ml-3">
-                            <span class="username d-block font-weight-bold">Username</span>
-                            <span class="role text-muted">Admin</span>
-                        </div>
-                    </div>
-                    <div class="dropdown-divider"></div>
-                    <span class="dropdown-header">Account</span>
-                    <a class="dropdown-item" href="{{ route('profile') }}">
-                        <i class="fas fa-user"></i> Profile
-                    </a>
-                    <a class="dropdown-item" href="/UserActivity">
-                        <i class="fas fa-chart-line"></i> Activity
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <span class="dropdown-header">Management Account</span>
-                    <a class="dropdown-item" href="/ManagementUsers">
-                        <i class="fas fa-users-cog"></i> User
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item logout" href="#">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
+
+    @include('Navbar._parts._nav')
 
     <button class="btn btn-outline-danger back-btn position-absolute" id="backButton">
         <i class="fas fa-arrow-left"></i> Back
