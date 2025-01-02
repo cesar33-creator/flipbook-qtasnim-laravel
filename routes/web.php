@@ -54,6 +54,7 @@ Route::get('/Company', [FlipBookController::class, 'Company'])->name('Company');
 // Auth
 Route::post('/login', [AuthController::class, 'authenticate']);
 Route::post('/logout', [AuthController::class, 'logout']);
+Route::get('/register', [AuthController::class, 'register']);
    // //Upload Pdf & Delete BukuKhusus
 Route::resource('/UploadFile', UploadFileController::class);
 Route::get('/BukuKhusus', [UploadFileController::class, 'index'])->middleware('auth');    // Hanya dapat diakses oleh yang sudah login
