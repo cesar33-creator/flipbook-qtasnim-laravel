@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Roles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,6 +38,7 @@ class AuthController extends Controller
 
     public function register()
     {
-        return view('auth.register');
+        $roles = Roles::get();
+        return view('auth.register', compact('roles'));
     }
 }
