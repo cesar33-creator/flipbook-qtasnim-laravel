@@ -1,97 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{{ asset('assets/logo-qtasnim-kecil-tp.png') }}">
-    <title>Edit Roles - Qtasnim</title>
-
-    <!-- jQuery & jQuery UI -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-
-    <!-- SweetAlert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-dyBbyVBKdqErH0P5E9t2FytSBuwjAPTk1XBpk68e5U9A3PSVblQxr4N6RTl9+0I3" crossorigin="anonymous">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/flipbook.style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/index.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/create_management.css') }}">
-
-    <script src="{{ asset('assets/js/flipbook.min.js') }}"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            // Event untuk tombol back
-            $('#backButton').on('click', function() {
-                console.log('Back button clicked!');
-                if (window.history.length > 1) {
-                    window.history.back();
-                } else {
-                    alert('Tidak ada halaman sebelumnya.');
-                }
-            });
-
-            // Menutup navbar saat klik di luar
-            $(document).on('click', function(event) {
-                var target = $(event.target);
-                if (!target.closest('.navbar').length && !target.closest('.form-inline').length) {
-                    $('.navbar-collapse').collapse('hide');
-                }
-            });
-        });
-    </script>
-</head>
-
-<body>
-
-    <!-- Navbar -->
-    @include('ManagementRoles._parts._navbar')
-    <!-- End Of Navbar -->
-
-    <br><br><br><br>
-
-    <!-- Buttons -->
-    <div class="top-buttons d-flex justify-content-end">
-        <!-- Back Button -->
-        <button class="btn btn-outline-danger" id="backButton">
-            <i class="fas fa-arrow-left"></i> Back
-        </button>
+@extends('dashboardadmin')
+@section('title','Data Roles-')
+@section('breadcrumbs')
+<main id="main" class="main">
+    <div class="pagetitle">
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="./anggotas">Master Data</a></li>
+                <li class="breadcrumb-item active">Data Roles</li>
+            </ol>
+        </nav>
     </div>
+    <section class="section dashboard">
+        <div class="col-12">
+            <div class="row">
+                <div class="card top-selling overflow-auto">
+                    <div class="content mt-3">
+                        <div class="animated fadeIn">
 
-    <!-- form add -->
-    @include('ManagementRoles._parts._edit')
-    <!-- end from add -->
+                            @if (session('status'))
+                            <div class="alert alert-success">
+                                {{ session('status') }}
+                            </div>
+                            @endif
 
-    <!-- Submit Button -->
-    <div class="text-center">
-        <button type="submit" class="btn btn-save">Save</button>
-    </div>
-    </form>
-    </div>
+                            <div class="card-header">
+                                <table width="100%" class="fa fa-text-height" aria-hidden="true" border="0" cellpadding="0" cellspacing="0" class="fa fa-align-center">
+                                    <tr>
+                                        <td>
+                                            <h5 class="card-title">Ubah Data Roles</span></h5>
+                                        </td>
+                                        <td>
+                                            <div align="right"><a href="{{ url('./ManagementRoles')}}" class="btn btn-success btn-sm">
+                                                    <span class="bi bi-arrow-left-circle-fill" style="font-size:16px"> Back</span></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
 
-    <!-- End Form Add -->
+                                <div class="col-12">
+                                    <div class="card recent-sales overflow-auto">
+                                        <div class="card-body">
+                                            <form action="{{ url('ManagementRoles/' .$roles->id) }}" method="post" enctype="multipart/form-data">
 
-    <br><br><br>
+                                                @method('put')
+                                                {{ csrf_field() }}
+                                                <div class="row mb-3">
+                                                    <label for="name" class="col-sm-2 col-form-label">ID</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" readonly value="{{ old('id',$roles->id) }}" name="id" required autofocus>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="nik" class="col-sm-2 col-form-label">Nama Roles</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" value="{{ old('roles',$roles->roles) }}" name="roles" required autofocus>
+                                                    </div>
+                                                </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
 
-</body>
+                                                <button type="submit" class="btn btn-success" style="font-size:16px"><span class="bi bi-pencil-square green-color"> Update </span></button>
 
-</html>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+</main>
+@endsection

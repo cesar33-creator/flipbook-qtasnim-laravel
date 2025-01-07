@@ -35,6 +35,10 @@ Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
+Route::get('home', function () {
+    return view('home');
+});
+
 // Halaman dashboard biasa (dapat diakses oleh semua orang)
 Route::get('dashboard', function () {
     return view('dashboard');
@@ -78,7 +82,7 @@ Route::post('/ManagementRoles', [ManagementRolesController::class, 'store'])->na
 Route::get('/ManagementRoles/show', [ManagementRolesController::class, 'show'])->name('show');
 Route::get('/ManagementRoles/{id}/edit', [ManagementRolesController::class, 'edit'])->name('edit');
 Route::put('/ManagementRoles/{id}', [ManagementRolesController::class, 'update'])->name('update');
-Route::delete('/ManagementRoles/{id}', [ManagementRolesController::class, 'destroy'])->name('destroy');
+Route::delete('/ManagementRoles/{id}', [ManagementRolesController::class, 'destroy'])->name('ManagementRoles.destroy');
 
 // Flipbook
 Route::get('/KodeEtik', [FlipBookController::class, 'KodeEtik'])->name('KodeEtik');
@@ -110,5 +114,14 @@ Route::get('/General', [UploadGeneralController::class, 'index']);
 Route::get('/General/{idbuku}', [UploadGeneralController::class, 'show']);
 Route::delete('/General/{idbuku}', [UploadGeneralController::class, 'destroy'])->name('destroy');
 
+// General Page dengan middleware auth
+    // Route::group(['middleware' => 'auth'], function () {
+    //     Route::get('/General', [UploadGeneralController::class, 'index']);
+    //     Route::get('/General/{idbuku}', [UploadGeneralController::class, 'show']);
+    //     Route::delete('/General/{idbuku}', [UploadGeneralController::class, 'destroy'])->name('destroy');
+    // });
+
 //User Activity
 Route::get('/UserActivity', [UserActivityController::class, 'index']);
+
+
