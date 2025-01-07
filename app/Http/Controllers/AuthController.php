@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Roles;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -40,5 +42,20 @@ class AuthController extends Controller
     {
         $roles = Roles::get();
         return view('auth.register', compact('roles'));
+    }
+
+    public function storeregis(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => ['required', 'max:255'],
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+            'idroles' => ['required'],
+        ]);
+
+        $validatedData['password'] = Hash::make($request->password);
+
+        User::create($validatedData);
+        return redirect('/login')->with('status', 'Data berhasil ditambah!');
     }
 }
