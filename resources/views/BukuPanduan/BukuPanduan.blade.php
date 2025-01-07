@@ -110,7 +110,7 @@
         <div class="covers">
             @foreach ($data as $item)
             <div class="thumb book-3" data-name="{{ $item->nama_buku }}">
-                <a href="/BukuPanduan/{{ $item->id }}">
+                <a href="/BukuPanduan/{{ $item->idbuku }}">
                     <img src="{{ asset('storage/' . $item->image_buku) }}">
                 </a>
             </div>

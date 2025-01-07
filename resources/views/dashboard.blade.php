@@ -5,28 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{{ asset('assets/logo-qtasnim-kecil-tp.png') }}">
-    <title>Qtasnim</title>
+    <title>Dashboard - Qtasnim</title>
 
-    <!-- jQuery & jQuery UI -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-
-    <!-- SweetAlert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <!-- Custom CSS -->
+    <!-- CSS -->
+    <link rel="stylesheet" href=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/flipbook.style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/Dashboard.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <script src="{{ asset('assets/js/flipbook.min.js') }}"></script>
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
 
-    <script type="text/javascript">
+    <script>
         $(document).ready(function() {
             // Event untuk tombol back
             $('#backButton').on('click', function() {
@@ -38,16 +33,6 @@
                 }
             });
 
-            // Pencarian PDF
-            $('.form-inline').on('submit', function(event) {
-                event.preventDefault();
-                var searchValue = $('.form-control').val().toLowerCase();
-                $('.thumb').each(function() {
-                    var fileName = $(this).data('name').toLowerCase();
-                    $(this).toggle(fileName.indexOf(searchValue) !== -1);
-                });
-            });
-
             // Menutup navbar saat klik di luar
             $(document).on('click', function(event) {
                 var target = $(event.target);
@@ -55,95 +40,235 @@
                     $('.navbar-collapse').collapse('hide');
                 }
             });
-
-            // Event untuk klik Buku Khusus
-            $('.book-1 a').on('click', function(event) {
-                event.preventDefault(); // Cegah navigasi
-
-                Swal.fire({
-                    icon: "error",
-                    title: "Maaf Anda Harus Login",
-                    allowOutsideClick: true, // Cegah penutupan alert dengan klik di luar
-                    confirmButtonText: "OK" // Tombol untuk melanjutkan
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Redirect ke halaman login setelah klik OK
-                        window.location.href = "{{ url('login') }}";
-                    }
-                });
-            });
-
-
         });
     </script>
-</head>
 
 <body>
+    <nav class="navbar navbar-light bg-white fixed-top shadow-sm">
+                <!-- Navbar -->
+        <div class="navbar container-fluid">
+            <div class="d-flex align-items-center justify-content-between w-100">
+                <!-- Logo -->
+                <a class="navbar-brand position-relative" href="#">
+                    <img src="{{ asset('assets/Logo-Qtasnim-Digital-Teknologi.png') }}" alt="Qtasnim LOGO" width="150">
+                </a>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
-        <a class="navbar-brand" href="#">
-            <img src="{{ asset('assets/Logo-Qtasnim-Digital-Teknologi.png') }}" alt="Qtasnim LOGO" width="150">
-        </a>
+                <!-- Search Form -->
+                <form class="form-inline d-flex search-form mx-auto">
+                    <div class="input-group">
+                        <!-- Input field -->
+                        <input
+                            class="form-control"
+                            type="search"
+                            placeholder="Search"
+                            aria-label="Search">
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+                        <!-- Button untuk layar besar -->
+                        <button
+                            class="btn btn-outline-danger search-button"
+                            type="submit">
+                            Search
+                        </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="mx-auto d-flex flex-grow-1 justify-content-center align-items-center">
-                <form class="form-inline d-flex">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search PDF..." aria-label="Search">
-                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+                        <!-- Icon untuk layar kecil -->
+                        <button
+                            class="btn btn-outline-danger search-icon"
+                            type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
                 </form>
-            </div>
 
-            <button class="btn btn-outline-danger ml-2 my-2 my-sm-0" id="backButton">
-                <i class="fas fa-arrow-left"></i> Back
-            </button>
+                <!-- Dropdown Profile -->
+                <div class="dropdown profile-menu">
+                    <a class="dropdown-toggle text-decoration-none" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="{{ asset('assets/Photo by Dan Cornilov.png') }}" style="width: 40px" alt="Avatar" class="rounded-circle">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                        <div class="dropdown-header d-flex align-items-center">
+                            <img src="{{ asset('assets/Photo by Dan Cornilov.png') }}" alt="Avatar" class="rounded-circle" style="width: 40px; height: 40px;">
+                            <div class="info ml-3">
+                                <span class="username d-block font-weight-bold">Username</span>
+                                <span class="role text-muted">Admin</span>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <span class="dropdown-header">Account</span>
+                        <a class="dropdown-item" href="{{ route('profile') }}">
+                            <i class="fas fa-user"></i> Profile
+                        </a>
+                        <a class="dropdown-item" href="/UserActivity">
+                            <i class="fas fa-chart-line"></i> Activity
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <span class="dropdown-header">Management Account</span>
+                        <a class="dropdown-item" href="/ManagementUsers">
+                            <i class="fas fa-users-cog"></i> User
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item logout" href="#">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
-    <!-- End Of Navbar -->
 
-    <br><br><br><br><br>
+    <button class="btn btn-outline-danger back-btn position-absolute" id="backButton">
+        <i class="fas fa-arrow-left"></i> Back
+    </button>
 
-    <!-- H1 Dashboard -->
-    <h1 class="text-center mt-8">Dashboard</h1>
-
-    <br><br>
-
-    <!-- PDF Section -->
-    <div class="bookshelf">
-        <div class="covers">
-            <div class="thumb book-1" data-name="Buku Khusus">
-                <a href="{{ url('BukuKhusus') }}">
-                    <img src="{{ asset('assets/bukuKhusus.png') }}" alt="Buku Khusus">
-                </a>
-            </div>
-            <div class="thumb book-2" data-name="Buku Panduan">
-                <a href="{{ url('BukuPanduan') }}">
-                    <img src="{{ asset('assets/bukuPanduan.png') }}" alt="Buku Panduan">
-                </a>
-            </div>
-            <div class="thumb book-3" data-name="Buku Karyawan">
-                <a href="{{ url('BukuKaryawan') }}">
-                    <img src="{{ asset('assets/BukuKaryawan.png') }}" alt="Buku Karyawan">
-                </a>
-            </div>
-        </div>
-        <img class="shelf-img" src="{{ asset('assets/shelf_wood.png') }}" alt="Shelf">
+    <!-- Dashboard Title -->
+    <div class="container mt-5 pt-5 text-center">
+        <h1 class="my-5">Dashboard</h1>
     </div>
 
-    <br><br><br>
+    <div class="container text-center">
+        <div class="row no-gutters"> <!-- Menambahkan kelas no-gutters -->
+            <div class="col">
+                <a href="{{ url('General') }}">
+                <div class="category-card">
+                    <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
+                    <div class="overlay-text">
+                        <p>General</p>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col">
+                <div class="category-card">
+                    <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
+                    <div class="overlay-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="overlay-text">
+                        <p>Pustaka</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="category-card">
+                    <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
+                    <div class="overlay-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="overlay-text">
+                        <p>HRGA</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+        <div class="row no-gutters"> <!-- Menambahkan kelas no-gutters -->
+            <div class="col">
+                <div class="category-card">
+                    <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
+                    <div class="overlay-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="overlay-text">
+                        <p>Finance</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="category-card">
+                    <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
+                    <div class="overlay-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="overlay-text">
+                        <p>Project & Services</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="category-card">
+                    <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
+                    <div class="overlay-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="overlay-text">
+                        <p>System & Design Analyst</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row no-gutters"> <!-- Menambahkan kelas no-gutters -->
+            <div class="col">
+                <div class="category-card">
+                    <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
+                    <div class="overlay-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="overlay-text">
+                        <p>Bussiness Development</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="category-card">
+                    <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
+                    <div class="overlay-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="overlay-text">
+                        <p>Public Relation & Partnership</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="category-card">
+                    <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
+                    <div class="overlay-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="overlay-text">
+                        <p>Research & Technical Solution</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row no-gutters"> <!-- Menambahkan kelas no-gutters -->
+            <div class="col">
+                <div class="category-card">
+                    <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
+                    <div class="overlay-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="overlay-text">
+                        <p>Health Care Solution</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="category-card">
+                    <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
+                    <div class="overlay-icon">
+                        {{-- <i class="fas fa-lock"></i> --}}
+                    </div>
+                    <div class="overlay-text">
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="category-card">
+                    <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
+                    <div class="overlay-icon">
+                        {{-- <i class="fas fa-lock"></i> --}}
+                    </div>
+                    <div class="overlay-text">
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 </body>
 
