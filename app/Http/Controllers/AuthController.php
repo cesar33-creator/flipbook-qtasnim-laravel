@@ -15,14 +15,13 @@ class AuthController extends Controller
     {
         $credentials = $request->validate([
             'email' => ['required', 'min:3', 'email'],
-            'password' => ['required', 'min:3',],
+            'password' => ['required', 'min:3'],
         ]);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('/dashboardKhusus');
         }
-
         return back()->with('loginError', 'Login Failed');
     }
 
@@ -53,7 +52,7 @@ class AuthController extends Controller
             'idroles' => ['required'],
         ]);
 
-        $validatedData['password'] = Hash::make($request->password);
+        $validatedData['password'] = bcrypt($request->password);
 
         User::create($validatedData);
         return redirect('/login')->with('status', 'Data berhasil ditambah!');

@@ -79,7 +79,7 @@
             </div>
         @endif
                 <h2 class="text-center mb-4">User Login</h2>
-                <form method="post" action="/login">
+                <form method="POST" action="/login">
                     @csrf
                     <div class="mb-3">
                         <label for="email" class="form-label">Email:</label>
