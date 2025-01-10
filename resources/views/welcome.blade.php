@@ -72,7 +72,7 @@
                 {!! $title !!}
             </div>
             <div class="links">
-                <a href="{{ url('/')}}">Wellcome</a>
+                <a href="{{ url('/home')}}">Wellcome</a>
                 <a href="{{ url('/dashboard')}}">Dashboard</a>
                 <a href="{{ url('/login')}}">Login</a>
             </div>

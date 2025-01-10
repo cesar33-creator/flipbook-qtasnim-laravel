@@ -68,6 +68,7 @@ class Kernel extends HttpKernel
 
     protected $routeMiddleware = [
         'verify.pin.or.account' => \App\Http\Middleware\VerifyPinOrAccount::class,
+        'role' => \App\Http\Middleware\RoleMiddleware::class,
     ];
-    
+
 }

@@ -27,5 +27,9 @@ class DatabaseSeeder extends Seeder
             'bio' => 'Ini Bio Cesar',
             'foto' => 'default.jpg'
         ]);
+        $this->call([
+            RoleSeeder::class,
+        ]);
+
     }
 }

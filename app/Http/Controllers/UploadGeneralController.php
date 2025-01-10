@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UploadFile;
+use App\Models\UploadBook;
 use Illuminate\Http\Request;
 
 class UploadGeneralController extends Controller
@@ -13,7 +13,7 @@ class UploadGeneralController extends Controller
     public function index()
     {
         //
-        $data = UploadFile::where('kategori', 'General')->latest()->get();
+        $data = UploadBook::where('kategori', 'General')->latest()->get();
         return  view('General.General', compact('data'));
     }
 
@@ -58,7 +58,7 @@ class UploadGeneralController extends Controller
         // catch(\Exception $e){
         //     return redirect('/General')->with("Gagal", "File Gagal Terkirim");
         // }
-        UploadFile::create($validatedData);
+        UploadBook::create($validatedData);
         return redirect('/General')->with("Sukses", "File Terkirim Sukses");
     }
 
@@ -74,7 +74,7 @@ class UploadGeneralController extends Controller
     public function show($id)
     {
         // Ambil data buku dari database berdasarkan ID
-        $data = UploadFile::findOrFail($id);
+        $data = UploadBook::findOrFail($id);
 
         // Path lengkap file PDF di storage
         $filePath = storage_path('app/public/' . $data->file_buku);
@@ -133,7 +133,7 @@ class UploadGeneralController extends Controller
     public function destroy(string $idbuku)
     {
         //
-        $data = UploadFile::findOrFail($idbuku);
+        $data = UploadBook::findOrFail($idbuku);
 
         $data->delete();
 

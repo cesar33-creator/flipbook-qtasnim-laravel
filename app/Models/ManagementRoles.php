@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class ManagementRoles extends Model
 {
     use HasFactory;
+    protected $table = 'roles'; // Nama tabel di database
 }

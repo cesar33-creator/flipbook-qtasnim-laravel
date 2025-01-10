@@ -99,9 +99,9 @@
                 <img src="{{ asset('assets/Rak buku.png') }}" alt="Rak Buku">
                 <div class="covers" id="coversContainer">
                     @foreach ($data as $index => $item)
-                    <div class="thumb book-3" data-name="{{ $item->nama_buku }}" data-id="{{ $item->idbuku }}" data-image="{{ asset('storage/' . $item->image_buku) }}">
-                        <a href="/General/{{ $item->idbuku }}">
-                            <img src="{{ asset('storage/' . $item->image_buku) }}">
+                    <div class="thumb book-3" data-name="{{ $item->nama_buku }}" data-id="{{ $item->id }}" data-image="{{ asset('storage/' . $item->image_buku) }}">
+                        <a href="/General/{{ $item->id }}">
+                            <img src="{{ asset('storage/' . $item->image_buku) }}" alt="{{ $item->nama_buku }}">
                         </a>
                     </div>
                     @endforeach

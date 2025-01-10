@@ -64,7 +64,7 @@
         <div class="login-left">
         <img src="{{URL::to('/assets/logo-qtasnim-kecil-tp.png')}}" alt="Logo Qtasnim" style="width: 220px;">
             <h1>Hey There!</h1>
-            <p>Welcome back. <br> You are just one step away to your feed.</p> 
+            <p>Welcome back. <br> You are just one step away to your feed.</p>
             <p></p>
         </div>
         <div class="login-right">
