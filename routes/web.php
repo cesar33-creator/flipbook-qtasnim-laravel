@@ -33,7 +33,7 @@ Route::get('/', function () {
 // Halaman login
 Route::get('/login', function () {
     return view('auth.login');
-})->name('login');
+})->name('login')->middleware('guest');
 
 // Halaman dashboard biasa (dapat diakses oleh semua orang)
 Route::get('dashboard', function () {
@@ -41,9 +41,9 @@ Route::get('dashboard', function () {
 });
 
 // Halaman dashboard Khusus (dilindungi oleh middleware)
-Route::get('dashboardKhusus', function () {
+Route::get('/dashboardKhusus', function () {
     return view('dashboardKhusus');
-})->middleware('auth'); // Hanya dapat diakses oleh yang sudah login
+}); // Hanya dapat diakses oleh yang sudah login
 
 // Halaman BukuKhusus Login (dilindungi oleh middleware)
 Route::get('/BukuKhusus', function () {
@@ -70,7 +70,7 @@ Route::get('/ManagementUsers/{Name}/edit', [ManagementUsersController::class, 'e
 Route::put('/ManagementUsers/{Name}', [ManagementUsersController::class, 'update'])->name('update');
 Route::delete('/ManagementUsers/{Name}', [ManagementUsersController::class, 'destroy'])->name('destroy');
 
-// ManagementRoles Page
+// ManagementRoles Pages
 Route::resource('ManagementRoles', ManagementRolesController::class);
 Route::get('/ManagementRoles', [ManagementRolesController::class, 'index'])->name('ManagementRoles.roles');
 Route::get('ManagementRoles/create', [ManagementRolesController::class, 'create'])->name('create');

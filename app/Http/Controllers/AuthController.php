@@ -11,18 +11,41 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     //
+
+    // public function authenticate(Request $request)
+    // {
+    //     $credentials = $request->validate([
+    //         'email' => ['required', 'min:3', 'email'],
+    //         'password' => ['required', 'min:3'],
+    //     ]);
+
+    //     if (Auth::attempt($credentials)&&) {
+    //         $request->session()->regenerate();
+    //         return redirect()->intended('/dashboardKhusus');
+    //     }
+    //     return back('/login')->with('loginError', 'Login Failed');
+    // }
+
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
             'email' => ['required', 'min:3', 'email'],
             'password' => ['required', 'min:3'],
         ]);
-
-        if (Auth::attempt($credentials)) {
+    
+        $user = User::where('email', $credentials['email'])->first();
+    
+        if ($user && Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboardKhusus');
+    
+            if ($user->idroles === '1') {
+                return redirect()->intended('/UserActivity');
+            } else {
+                return redirect()->intended('/dashboard');
+            }
         }
-        return back()->with('loginError', 'Login Failed');
+    
+        return back()->with('loginError', 'Login Failed!');
     }
 
 
