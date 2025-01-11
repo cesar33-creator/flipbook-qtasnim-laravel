@@ -34,7 +34,8 @@ class UserResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Select::make('roles')
-                ->relationship('roles', 'name'),
+                    ->relationship('roles', 'name')
+                    ->required(),
                 Forms\Components\TextInput::make('password')
                     ->password()
                     ->required()
@@ -50,7 +51,7 @@ class UserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
-                    Tables\Columns\TextColumn::make('roles.name')
+                Tables\Columns\TextColumn::make('role.name')
                     ->formatStateUsing(fn($state): string => str()->headline($state)),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -74,6 +75,7 @@ class UserResource extends Resource
                 ]),
             ]);
     }
+
 
     public static function getRelations(): array
     {

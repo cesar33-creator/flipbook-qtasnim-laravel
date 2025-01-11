@@ -17,8 +17,15 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->unsignedBigInteger('role_id')->nullable(); // Foreign key untuk role
             $table->rememberToken();
             $table->timestamps();
+
+            // Definisi foreign key
+            $table->foreign('role_id') // Definisikan role_id sebagai foreign key
+                ->references('id')     // Mereferensikan kolom 'id' di tabel 'roles'
+                ->on('roles')          // Nama tabel asal
+                ->onDelete('set null'); // Jika role dihapus, set role_id ke NULL
         });
     }
 

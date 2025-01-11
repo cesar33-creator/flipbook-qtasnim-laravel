@@ -92,11 +92,11 @@
                         <input type="text" id="name" name="name" class="form-control" required>
                     </div>
                     <div class="mb-2">
-                        <label for="roles" class="form-label">Roles:</label>
+                        <label for="role_id" class="form-label">Roles:</label>
                         <div class="col-sm-15">
-                            <select class="form-control" id="idroles" name="idroles">
+                            <select class="form-control" id="role_id" name="role_id" required>
                                 @foreach ($roles as $item)
-                                <option value='{{$item -> id}}'>{{$item -> id}} - {{$item -> roles}}</option>
+                                <option value='{{$item -> id}}'>{{$item -> name}}</option>
                                 @endforeach
                             </select>
                         </div>

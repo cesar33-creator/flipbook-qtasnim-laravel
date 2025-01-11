@@ -32,19 +32,19 @@ class AuthController extends Controller
             'email' => ['required', 'min:3', 'email'],
             'password' => ['required', 'min:3'],
         ]);
-    
+
         $user = User::where('email', $credentials['email'])->first();
-    
+
         if ($user && Auth::attempt($credentials)) {
             $request->session()->regenerate();
-    
-            if ($user->idroles === '1') {
-                return redirect()->intended('/UserActivity');
+
+            if ($user->role_id === '1') {
+                return redirect()->intended('/dashboardKhusus');
             } else {
                 return redirect()->intended('/dashboard');
             }
         }
-    
+
         return back()->with('loginError', 'Login Failed!');
     }
 
@@ -72,7 +72,7 @@ class AuthController extends Controller
             'name' => ['required', 'max:255'],
             'email' => ['required', 'email'],
             'password' => ['required'],
-            'idroles' => ['required'],
+            'role_id' => ['required', 'exists:roles,id'],
         ]);
 
         $validatedData['password'] = bcrypt($request->password);

@@ -6,9 +6,10 @@ use Filament\Pages\Page;
 use Filament\Pages\Auth\Register as BaseRegister;
 use Filament\Pages\Auth\Register as AuthRegister;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Component;
 use Filament\Forms\Form;
 use Spatie\Permission\Models\Role as ModelsRole;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class Register extends AuthRegister
 {
@@ -30,9 +31,11 @@ class Register extends AuthRegister
 
     protected function getRoleFormComponent(): Select
     {
-        return Select::make('role')
+        return Select::make('role_id')
             ->options(ModelsRole::all()->pluck('name', 'id'))
             ->required()
             ->label('Role');
     }
+
+
 }
