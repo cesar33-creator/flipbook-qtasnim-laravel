@@ -33,7 +33,7 @@ Route::get('/', function () {
 // Halaman login
 Route::get('/login', function () {
     return view('auth.login');
-})->name('login');
+})->name('login')->middleware('guest');
 
 Route::get('home', function () {
     return view('home');
@@ -45,9 +45,9 @@ Route::get('dashboard', function () {
 });
 
 // Halaman dashboard Khusus (dilindungi oleh middleware)
-Route::get('dashboardKhusus', function () {
+Route::get('/dashboardKhusus', function () {
     return view('dashboardKhusus');
-})->middleware('auth'); // Hanya dapat diakses oleh yang sudah login
+}); // Hanya dapat diakses oleh yang sudah login
 
 // Halaman BukuKhusus Login (dilindungi oleh middleware)
 Route::get('/BukuKhusus', function () {
@@ -74,7 +74,7 @@ Route::get('/ManagementUsers/{Name}/edit', [ManagementUsersController::class, 'e
 Route::put('/ManagementUsers/{Name}', [ManagementUsersController::class, 'update'])->name('update');
 Route::delete('/ManagementUsers/{Name}', [ManagementUsersController::class, 'destroy'])->name('destroy');
 
-// ManagementRoles Page
+// ManagementRoles Pages
 Route::resource('ManagementRoles', ManagementRolesController::class);
 Route::get('/ManagementRoles', [ManagementRolesController::class, 'index'])->name('ManagementRoles.roles');
 Route::get('ManagementRoles/create', [ManagementRolesController::class, 'create'])->name('create');
@@ -92,6 +92,9 @@ Route::get('/Company', [FlipBookController::class, 'Company'])->name('Company');
 // Auth
 Route::post('/login', [AuthController::class, 'authenticate']);
 Route::post('/logout', [AuthController::class, 'logout']);
+Route::get('/register', [AuthController::class, 'register']);
+Route::post('/store', [AuthController::class, 'storeregis']);
+   // //Upload Pdf & Delete BukuKhusus
 
 // //Upload Pdf & Delete BukuKhusus
 Route::resource('/UploadFile', UploadFileController::class);

@@ -9,13 +9,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
-
 {
-    use HasFactory, Notifiable, HasRoles;
-    
+    use HasApiTokens, HasFactory, Notifiable;
+    //protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      * @method bool hasRole(string|array $roles, string|null $guard = null)
@@ -27,6 +27,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'idroles',
     ];
 
     /**
