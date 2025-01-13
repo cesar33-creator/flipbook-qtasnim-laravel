@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Profile;
+use Illuminate\Support\Facades\Auth;
+use App\Models\ManagementUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -12,7 +15,14 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('Profile.index');
+        $userId = 3; // Ganti dengan UID yang sesuai atau gunakan Auth::user()->id
+        $user = ManagementUsers::with('role')->where('uid', $userId)->first();
+
+        if (!$user) {
+            abort(404, 'Pengguna tidak ditemukan.');
+        }
+
+        return view('Profile.index', compact('user'));
     }
 
     /**

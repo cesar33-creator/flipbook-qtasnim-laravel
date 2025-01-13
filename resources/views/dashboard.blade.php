@@ -120,9 +120,10 @@
                             <i class="fas fa-users-cog"></i> User
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item logout" href="#">
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                        </a>
+                        <form method="post" action="/logout" class="dropdown-item logout">
+                            @csrf
+                            <button type="submit">Log Out</button>
+                        </form>
                     </div>
                 </div>
             </div>

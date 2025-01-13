@@ -6,14 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**~~
+    /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::table('upload_files', function (Blueprint $table) {
-            //
-            $table->string('kategori')->nullable();
+        Schema::create('category_books', function (Blueprint $table) {
+            $table->id();
+            $table->string('name_category');
+            $table->timestamps();
         });
     }
 
@@ -22,9 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('upload_files', function (Blueprint $table) {
-            //
-            $table->dropColumn('kategori');
-        });
+        Schema::dropIfExists('category_books');
     }
 };

@@ -106,7 +106,6 @@
                 profilePhoto.src = defaultPhoto; // Reset to default photo
             });
         });
-
     </script>
 </head>
 
@@ -123,7 +122,7 @@
             <h3>Profile</h3>
             <div class="position-relative">
                 <!-- Profile Picture -->
-                <img src="{{ asset('assets/Photo by Dan Cornilov.png') }}" alt="Profile Picture" class="profile-picture">
+                <img src="{{ asset('storage/' . $user->foto) }}" alt="Profile Picture" class="profile-picture">
 
                 <!-- Dropdown for camera icon -->
                 <div class="dropdown profile-camera-dropdown">
@@ -136,8 +135,8 @@
                             <i class="fas fa-upload"></i> Change Photo
                         </div>
                     </div>
-                    <h2><i id="genderIcon" class="fas fa-male"></i> Kevin George</h2>
-                    <p>Admin</p>
+                    <h2><i id="genderIcon" class="fas fa-male"></i>{{ $user->name }}</h2>
+                    <p>{{ $user->role->roles }}</p>
                     <div class="info-box">
                         <!-- Left Icon Section -->
                         <div class="icon-section">
@@ -145,7 +144,7 @@
                         </div>
                         <!-- Right Text Section -->
                         <div class="text-section">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Animi quo velit consequuntur, iste.
+                            {{ $user->bio }}
                         </div>
                     </div>
                 </div>
@@ -158,24 +157,24 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="username">Username</label>
-                        <input type="text" id="username" name="username" value="Kevin George">
+                        <input type="text" id="username" name="username" value="{{ $user->name }}">
                     </div>
                     <div class="col-md-6">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" value="User987@gmail.com" disabled>
+                        <input type="email" id="email" name="email" value="{{ $user->email }}" disabled>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-6">
                         <label for="role">Role</label>
-                        <input type="text" id="role" name="role" value="Admin" disabled>
+                        <input type="text" id="roles" name="roles" value="{{ $user->role->roles }}" disabled>
                     </div>
 
                     <div class="col-md-6">
                         <label for="password">Password</label>
                         <div class="password-field">
-                            <input type="password" id="password" name="password" value="password123">
+                            <input type="password" id="password" name="password" value="{{ $user->password }}">
                             <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
                         </div>
                     </div>
@@ -185,14 +184,14 @@
                     <div class="col-md-6">
                         <label for="gender">Gender</label>
                         <select id="gender" name="gender">
-                            <option value="Male" selected>Male</option>
-                            <option value="Female">Female</option>
+                            <option value="Male" {{ $user->gender === 'Male' ? 'selected' : '' }}>Male</option>
+                            <option value="Female" {{ $user->gender === 'Female' ? 'selected' : '' }}>Female</option>
                         </select>
                     </div>
 
                     <div class="col-md-6">
                         <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" value="+628887689">
+                        <input type="tel" id="phone" name="phone" value="{{ $user->phone_number }}">
                     </div>
                 </div>
 
@@ -204,7 +203,7 @@
 
                     <div class="col-md-6">
                         <label for="bio">Bio</label>
-                        <textarea id="bio" name="bio"></textarea>
+                        <textarea id="bio" name="bio">{{ $user->bio }}</textarea>
                     </div>
                 </div>
 

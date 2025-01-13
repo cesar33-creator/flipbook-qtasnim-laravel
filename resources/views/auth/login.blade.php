@@ -64,13 +64,22 @@
         <div class="login-left">
         <img src="{{URL::to('/assets/logo-qtasnim-kecil-tp.png')}}" alt="Logo Qtasnim" style="width: 220px;">
             <h1>Hey There!</h1>
-            <p>Welcome back. <br> You are just one step away to your feed.</p> 
+            <p>Welcome back. <br> You are just one step away to your feed.</p>
             <p></p>
         </div>
         <div class="login-right">
             <div class="login-control">
+            @if ($errors->any())
+            <div class="error">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
                 <h2 class="text-center mb-4">User Login</h2>
-                <form method="post" action="/login">
+                <form method="POST" action="/login">
                     @csrf
                     <div class="mb-3">
                         <label for="email" class="form-label">Email:</label>

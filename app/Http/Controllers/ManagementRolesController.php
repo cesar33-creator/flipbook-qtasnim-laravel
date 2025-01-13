@@ -35,8 +35,9 @@ class ManagementRolesController extends Controller
      */
     public function create()
     {
+        $roles = DB::table('roles')->get();
         // dd('create');
-        return view('ManagementRoles.create');
+        return view('ManagementRoles/create', compact('roles'));
     }
 
     /**
@@ -45,23 +46,16 @@ class ManagementRolesController extends Controller
     public function store(Request $request)
     {
         // Validasi input data
-        $request->validate([
-            'id' => 'required|string|max:255',
-            'roles' => 'required|string|max:255',
-        ]);
-
         try {
-            // Menyimpan data ke database
-            DB::table('roles')->insert([
+            $query = DB::table('roles')->insert([
                 'id' => $request->id,
                 'roles' => $request->roles,
             ]);
 
-            // Menambahkan flash message untuk sukses
-            return redirect('/ManagementRoles')->with('status', 'Berhasil Menambahkan Data Roles');
-        } catch (\Exception $ex) {
-            // Redirect dengan pesan error
-            return redirect('/ManagementRoles')->with('status', 'Gagal Menambahkan Data Roles: ' . $ex->getMessage());
+
+            return  redirect('ManagementRoles')->with('status', 'Data Roles berhasil ditambah..');
+        } catch (\Illuminate\Database\QueryException $ex) {
+            return  redirect('ManagementRoles')->with('status', $ex);
         }
     }
 

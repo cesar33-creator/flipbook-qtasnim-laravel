@@ -42,7 +42,11 @@ Route::get('/', function () {
 // Halaman login
 Route::get('/login', function () {
     return view('auth.login');
-})->name('login');
+})->name('login')->middleware('guest');
+
+Route::get('home', function () {
+    return view('home');
+});
 
 // Halaman dashboard biasa (dapat diakses oleh semua orang)
 Route::get('dashboard', function () {
@@ -50,9 +54,9 @@ Route::get('dashboard', function () {
 });
 
 // Halaman dashboard Khusus (dilindungi oleh middleware)
-Route::get('dashboardKhusus', function () {
+Route::get('/dashboardKhusus', function () {
     return view('dashboardKhusus');
-})->middleware('auth'); // Hanya dapat diakses oleh yang sudah login
+}); // Hanya dapat diakses oleh yang sudah login
 
 // Halaman BukuKhusus Login (dilindungi oleh middleware)
 Route::get('/BukuKhusus', function () {
@@ -79,7 +83,7 @@ Route::get('/ManagementUsers/{Name}/edit', [ManagementUsersController::class, 'e
 Route::put('/ManagementUsers/{Name}', [ManagementUsersController::class, 'update'])->name('update');
 Route::delete('/ManagementUsers/{Name}', [ManagementUsersController::class, 'destroy'])->name('destroy');
 
-// ManagementRoles Page
+// ManagementRoles Pages
 Route::resource('ManagementRoles', ManagementRolesController::class);
 Route::get('/ManagementRoles', [ManagementRolesController::class, 'index'])->name('ManagementRoles.roles');
 Route::get('ManagementRoles/create', [ManagementRolesController::class, 'create'])->name('create');
@@ -87,7 +91,7 @@ Route::post('/ManagementRoles', [ManagementRolesController::class, 'store'])->na
 Route::get('/ManagementRoles/show', [ManagementRolesController::class, 'show'])->name('show');
 Route::get('/ManagementRoles/{id}/edit', [ManagementRolesController::class, 'edit'])->name('edit');
 Route::put('/ManagementRoles/{id}', [ManagementRolesController::class, 'update'])->name('update');
-Route::delete('/ManagementRoles/{id}', [ManagementRolesController::class, 'destroy'])->name('destroy');
+Route::delete('/ManagementRoles/{id}', [ManagementRolesController::class, 'destroy'])->name('ManagementRoles.destroy');
 
 // Flipbook
 Route::get('/KodeEtik', [FlipBookController::class, 'KodeEtik'])->name('KodeEtik');
@@ -97,6 +101,9 @@ Route::get('/Company', [FlipBookController::class, 'Company'])->name('Company');
 // Auth
 Route::post('/login', [AuthController::class, 'authenticate']);
 Route::post('/logout', [AuthController::class, 'logout']);
+Route::get('/register', [AuthController::class, 'register']);
+Route::post('/store', [AuthController::class, 'storeregis']);
+   // //Upload Pdf & Delete BukuKhusus
 
 // //Upload Pdf & Delete BukuKhusus
 Route::resource('/UploadFile', UploadFileController::class);
@@ -175,3 +182,5 @@ Route::delete('/System/{idbuku}', [UploadSystemDesignController::class, 'destroy
 
 //User Activity
 Route::get('/UserActivity', [UserActivityController::class, 'index']);
+
+

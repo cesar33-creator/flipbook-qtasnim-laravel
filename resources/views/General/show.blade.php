@@ -27,7 +27,7 @@
         $(document).ready(function() {
             $("#read").flipBook({
                 //Layout Setting
-                pdfUrl: "{{ asset('storage/' . $data->file_buku) }}",
+                pdfUrl: "{{ asset('storage/' . $data->file_buku) }}" ,
                 lightBox: true,
                 layout: 3,
                 currentPage: {
