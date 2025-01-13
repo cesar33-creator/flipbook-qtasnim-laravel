@@ -33,13 +33,15 @@ class UserResource extends Resource
                     ->email()
                     ->required()
                     ->maxLength(255),
-                Select::make('roles')
+                Select::make('role_id')
                     ->relationship('roles', 'name')
                     ->required(),
                 Forms\Components\TextInput::make('password')
                     ->password()
                     ->required()
-                    ->maxLength(255),
+                    ->nullable()
+                    ->maxLength(255)
+                    ->hiddenOn('edit'),
             ]);
     }
 
