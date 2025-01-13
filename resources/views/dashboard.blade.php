@@ -57,22 +57,22 @@
                 <form class="form-inline d-flex search-form mx-auto">
                     <div class="input-group">
                         <!-- Input field -->
-                        <input 
-                            class="form-control" 
-                            type="search" 
-                            placeholder="Search" 
+                        <input
+                            class="form-control"
+                            type="search"
+                            placeholder="Search"
                             aria-label="Search">
-                        
+
                         <!-- Button untuk layar besar -->
-                        <button 
-                            class="btn btn-outline-danger search-button" 
+                        <button
+                            class="btn btn-outline-danger search-button"
                             type="submit">
                             Search
                         </button>
-                
+
                         <!-- Icon untuk layar kecil -->
-                        <button 
-                            class="btn btn-outline-danger search-icon" 
+                        <button
+                            class="btn btn-outline-danger search-icon"
                             type="submit">
                             <i class="fas fa-search"></i>
                         </button>
@@ -113,7 +113,7 @@
                 </div>
             </div>
         </div>
-    </nav>    
+    </nav>
 
     <button class="btn btn-outline-danger back-btn position-absolute" id="backButton">
         <i class="fas fa-arrow-left"></i> Back

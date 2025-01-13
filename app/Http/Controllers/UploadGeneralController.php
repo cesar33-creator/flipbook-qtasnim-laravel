@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\UploadFile;
 use Illuminate\Http\Request;
 
-class GeneralController extends Controller
+class UploadGeneralController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -130,10 +130,10 @@ class GeneralController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $idbuku)
     {
         //
-        $data = UploadFile::findOrFail($id);
+        $data = UploadFile::findOrFail($idbuku);
 
         $data->delete();
 

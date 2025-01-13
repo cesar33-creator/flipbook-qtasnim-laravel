@@ -9,9 +9,9 @@ use App\Http\Controllers\PdfController;
 use App\Http\Controllers\UploadFileController;
 use App\Http\Controllers\UploadKaryawannControler;
 use App\Http\Controllers\UploadPanduanControler;
-use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\UserActivityController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UploadGeneralController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -89,25 +89,26 @@ Route::get('/Company', [FlipBookController::class, 'Company'])->name('Company');
 Route::post('/login', [AuthController::class, 'authenticate']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
-   // //Upload Pdf & Delete BukuKhusus
+// //Upload Pdf & Delete BukuKhusus
 Route::resource('/UploadFile', UploadFileController::class);
 Route::get('/BukuKhusus', [UploadFileController::class, 'index'])->middleware('auth');    // Hanya dapat diakses oleh yang sudah login
 Route::get('/BukuKhusus/{idbuku}', [UploadFileController::class, 'show'])->middleware('auth');
 
-// //Upload Pdf & Delete BukuPanduan
+// Upload Pdf & Delete BukuPanduan
 Route::resource('/UploadPanduan', UploadPanduanControler::class);
 Route::get('/BukuPanduan', [UploadPanduanControler::class, 'index']);
 Route::get('/BukuPanduan/{idbuku}', [UploadPanduanControler::class, 'show']);
 
-// //Upload Pdf & Delete BukuKaryawan
+// Upload Pdf & Delete BukuKaryawan
 Route::resource('/UploadKaryawan', UploadKaryawannControler::class);
 Route::get('/BukuKaryawan', [UploadKaryawannControler::class, 'index']);
 Route::get('/BukuKaryawan/{idbuku}', [UploadKaryawannControler::class, 'show']);
 
 // //Upload Pdf & Delete Buku General
-Route::resource('/UploadGeneral', GeneralController::class);
-Route::get('/General', [GeneralController::class, 'index']);
-Route::get('/General/{id}', [GeneralController::class, 'show']);
+Route::resource('/UploadGeneral', UploadGeneralController::class);
+Route::get('/General', [UploadGeneralController::class, 'index']);
+Route::get('/General/{idbuku}', [UploadGeneralController::class, 'show']);
+Route::delete('/General/{idbuku}', [UploadGeneralController::class, 'destroy'])->name('destroy');
 
 //User Activity
 Route::get('/UserActivity', [UserActivityController::class, 'index']);

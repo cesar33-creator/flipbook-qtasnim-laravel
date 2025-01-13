@@ -183,7 +183,7 @@
             </button>
 
             <!-- Button Delete -->
-            <form action="/UploadGeneral/{{ $data->id }}" method="post" id="deleteForm" class="p-0 m-0">
+            <form action="/UploadGeneral/{{ $data->idbuku }}" method="post" id="deleteForm" class="p-0 m-0">
                 @csrf
                 @method('delete')
                 <button type="button" class="btn btn-outline-danger" id="btnDeleteKr">
