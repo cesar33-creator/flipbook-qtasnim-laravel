@@ -12,6 +12,15 @@ use App\Http\Controllers\UploadPanduanControler;
 use App\Http\Controllers\UserActivityController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UploadGeneralController;
+use App\Http\Controllers\UploadBusinessController;
+use App\Http\Controllers\UploadFinanceController;
+use App\Http\Controllers\UploadHealthcareController;
+use App\Http\Controllers\UploadHRGAController;
+use App\Http\Controllers\UploadProjectServicesController;
+use App\Http\Controllers\UploadPublicRelationController;
+use App\Http\Controllers\UploadPustakaController;
+use App\Http\Controllers\UploadResearchController;
+use App\Http\Controllers\UploadSystemDesignController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -104,11 +113,65 @@ Route::resource('/UploadKaryawan', UploadKaryawannControler::class);
 Route::get('/BukuKaryawan', [UploadKaryawannControler::class, 'index']);
 Route::get('/BukuKaryawan/{idbuku}', [UploadKaryawannControler::class, 'show']);
 
-// //Upload Pdf & Delete Buku General
+// Upload Pdf & Delete Buku General
 Route::resource('/UploadGeneral', UploadGeneralController::class);
 Route::get('/General', [UploadGeneralController::class, 'index']);
 Route::get('/General/{idbuku}', [UploadGeneralController::class, 'show']);
 Route::delete('/General/{idbuku}', [UploadGeneralController::class, 'destroy'])->name('destroy');
+
+// Upload Pdf & Delete Buku Business
+Route::resource('/UploadBusiness', UploadBusinessController::class);
+Route::get('/Business', [UploadBusinessController::class, 'index']);
+Route::get('/Business/{idbuku}', [UploadBusinessController::class, 'show']);
+Route::delete('/Business/{idbuku}', [UploadBusinessController::class, 'destroy'])->name('destroy');
+
+// Upload Pdf & Delete Buku Finance
+Route::resource('/UploadFinance', UploadFinanceController::class);
+Route::get('/Finance', [UploadFinanceController::class, 'index']);
+Route::get('/Finance/{idbuku}', [UploadFinanceController::class, 'show']);
+Route::delete('/Finance/{idbuku}', [UploadFinanceController::class, 'destroy'])->name('destroy');
+
+// Upload Pdf & Delete Buku Healthcare
+Route::resource('/UploadHealthcare', UploadHealthcareController::class);
+Route::get('/Healthcare', [UploadHealthcareController::class, 'index']);
+Route::get('/Healtcare/{idbuku}', [UploadHealthcareController::class, 'show']);
+Route::delete('/Healthcare/{idbuku}', [UploadHealthcareController::class, 'destroy'])->name('destroy');
+
+// Upload Pdf & Delete Buku HRGA
+Route::resource('/UploadHRGA', UploadHRGAController::class);
+Route::get('/HRGA', [UploadHRGAController::class, 'index']);
+Route::get('/HRGA/{idbuku}', [UploadHRGAController::class, 'show']);
+Route::delete('/HRGA/{idbuku}', [UploadHRGAController::class, 'destroy'])->name('destroy');
+
+// Upload Pdf & Delete Buku Project and Services
+Route::resource('/UploadProjectServices', UploadProjectServicesController::class);
+Route::get('/ProjectServices', [UploadProjectServicesController::class, 'index']);
+Route::get('/ProjectServices/{idbuku}', [UploadProjectServicesController::class, 'show']);
+Route::delete('/ProjectServices/{idbuku}', [UploadProjectServicesController::class, 'destroy'])->name('destroy');
+
+// Upload Pdf & Delete Buku Public Relation
+Route::resource('/UploadPublicRelation', UploadPublicRelationController::class);
+Route::get('/PublicRelation', [UploadPublicRelationController::class, 'index']);
+Route::get('/PublicRelation/{idbuku}', [UploadPublicRelationController::class, 'show']);
+Route::delete('/PublicRelation/{idbuku}', [UploadPublicRelationController::class, 'destroy'])->name('destroy');
+
+// Upload Pdf & Delete Buku Pustaka
+Route::resource('/UploadPustaka', UploadPustakaController::class);
+Route::get('/Pustaka', [UploadPustakaController::class, 'index']);
+Route::get('/Pustaka/{idbuku}', [UploadPustakaController::class, 'show']);
+Route::delete('/Pustaka/{idbuku}', [UploadPustakaController::class, 'destroy'])->name('destroy');
+
+// Upload Pdf & Delete Buku Research
+Route::resource('/UploadResearch', UploadResearchController::class);
+Route::get('/Research', [UploadResearchController::class, 'index']);
+Route::get('/Research/{idbuku}', [UploadResearchController::class, 'show']);
+Route::delete('/Research/{idbuku}', [UploadResearchController::class, 'destroy'])->name('destroy');
+
+// Upload Pdf & Delete Buku Project and Services
+Route::resource('/UploadSystem', UploadSystemDesignController::class);
+Route::get('/System', [UploadSystemDesignController::class, 'index']);
+Route::get('/System/{idbuku}', [UploadSystemDesignController::class, 'show']);
+Route::delete('/System/{idbuku}', [UploadSystemDesignController::class, 'destroy'])->name('destroy');
 
 //User Activity
 Route::get('/UserActivity', [UserActivityController::class, 'index']);

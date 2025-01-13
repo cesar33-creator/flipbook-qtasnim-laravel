@@ -15,37 +15,51 @@
     <link rel="stylesheet" href="{{ asset('assets/css/Dashboard.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- jQuery and Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 
-    <script>
-        $(document).ready(function() {
-            // Event untuk tombol back
-            $('#backButton').on('click', function() {
-                console.log('Back button clicked!');
-                if (window.history.length > 1) {
-                    window.history.back();
-                } else {
-                    alert('Tidak ada halaman sebelumnya.');
-                }
-            });
+<script>
+    $(document).ready(function() {
+        // Event untuk tombol back
+        $('#backButton').on('click', function() {
+            console.log('Back button clicked!');
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                alert('Tidak ada halaman sebelumnya.');
+            }
+        });
 
-            // Menutup navbar saat klik di luar
-            $(document).on('click', function(event) {
-                var target = $(event.target);
-                if (!target.closest('.navbar').length && !target.closest('.form-inline').length) {
-                    $('.navbar-collapse').collapse('hide');
-                }
+        // Menutup navbar saat klik di luar
+        $(document).on('click', function(event) {
+            var target = $(event.target);
+            if (!target.closest('.navbar').length && !target.closest('.form-inline').length) {
+                $('.navbar-collapse').collapse('hide');
+            }
+        });
+
+        // Event untuk setiap kategori
+        $('.category-card').on('click', function() {
+            const categoryName = $(this).find('.overlay-text p').text().trim();
+            Swal.fire({
+                title: `${categoryName}`,
+                text: 'Maaf, Anda Tidak Punya Akses Loker Ini!',
+                icon: 'info',
+                confirmButtonText: 'OK'
             });
         });
-    </script>
+    });
+</script>
+
 
 <body>
     <nav class="navbar navbar-light bg-white fixed-top shadow-sm">
-                <!-- Navbar -->
+        <!-- Navbar -->
         <div class="navbar container-fluid">
             <div class="d-flex align-items-center justify-content-between w-100">
                 <!-- Logo -->
@@ -128,15 +142,16 @@
         <div class="row no-gutters"> <!-- Menambahkan kelas no-gutters -->
             <div class="col">
                 <a href="{{ url('General') }}">
-                <div class="category-card">
-                    <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
-                    <div class="overlay-text">
-                        <p>General</p>
+                    <div class="category-card-general">
+                        <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
+                        <div class="overlay-text">
+                            <p>General</p>
+                        </div>
                     </div>
-                </div>
                 </a>
             </div>
             <div class="col">
+            <a href="{{ url('Pustaka') }}">
                 <div class="category-card">
                     <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
                     <div class="overlay-icon">
@@ -146,8 +161,10 @@
                         <p>Pustaka</p>
                     </div>
                 </div>
+            </a>
             </div>
             <div class="col">
+            <a href="{{ url('HRGA') }}">
                 <div class="category-card">
                     <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
                     <div class="overlay-icon">
@@ -157,11 +174,13 @@
                         <p>HRGA</p>
                     </div>
                 </div>
+            </a>
             </div>
         </div>
 
         <div class="row no-gutters"> <!-- Menambahkan kelas no-gutters -->
             <div class="col">
+            <a href="{{ url('Finance') }}">
                 <div class="category-card">
                     <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
                     <div class="overlay-icon">
@@ -171,8 +190,10 @@
                         <p>Finance</p>
                     </div>
                 </div>
+            </a>
             </div>
             <div class="col">
+            <a href="{{ url('ProjectServices') }}">
                 <div class="category-card">
                     <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
                     <div class="overlay-icon">
@@ -182,8 +203,10 @@
                         <p>Project & Services</p>
                     </div>
                 </div>
+            </a>
             </div>
             <div class="col">
+            <a href="{{ url('SystemDesign') }}">
                 <div class="category-card">
                     <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
                     <div class="overlay-icon">
@@ -193,11 +216,13 @@
                         <p>System & Design Analyst</p>
                     </div>
                 </div>
+            </a>
             </div>
         </div>
 
         <div class="row no-gutters"> <!-- Menambahkan kelas no-gutters -->
             <div class="col">
+            <a href="{{ url('Business') }}">
                 <div class="category-card">
                     <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
                     <div class="overlay-icon">
@@ -207,8 +232,10 @@
                         <p>Bussiness Development</p>
                     </div>
                 </div>
+            </a>
             </div>
             <div class="col">
+            <a href="{{ url('Public') }}">
                 <div class="category-card">
                     <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
                     <div class="overlay-icon">
@@ -218,8 +245,10 @@
                         <p>Public Relation & Partnership</p>
                     </div>
                 </div>
+            </a>
             </div>
             <div class="col">
+            <a href="{{ url('Research') }}">
                 <div class="category-card">
                     <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
                     <div class="overlay-icon">
@@ -229,11 +258,13 @@
                         <p>Research & Technical Solution</p>
                     </div>
                 </div>
+            </a>
             </div>
         </div>
 
         <div class="row no-gutters"> <!-- Menambahkan kelas no-gutters -->
             <div class="col">
+            <a href="{{ url('Health') }}">
                 <div class="category-card">
                     <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
                     <div class="overlay-icon">
@@ -243,6 +274,7 @@
                         <p>Health Care Solution</p>
                     </div>
                 </div>
+            </a>
             </div>
             <div class="col">
                 <div class="category-card">

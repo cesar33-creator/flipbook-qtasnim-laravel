@@ -129,6 +129,17 @@ h1 {
     display: none !important;
 }
 
+.category-card-general {
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0;
+}
+
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -159,6 +170,8 @@ h1 {
         display: block !important;
         border-radius: 0 5px 5px 0 !important;
     }
+
+
 
 
 

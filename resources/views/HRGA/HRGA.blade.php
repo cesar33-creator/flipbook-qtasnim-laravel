@@ -48,7 +48,7 @@ window.onload = function () {
         let newBook = document.createElement('div');
         newBook.classList.add('thumb', 'book-3');
         newBook.innerHTML = `
-            <a href="/General/${newBookData.id}">
+            <a href="/HRGA/${newBookData.id}">
                 <img src="${newBookData.image}" alt="New Book">
             </a>
         `;
@@ -116,7 +116,7 @@ $(document).ready(function () {
         <i class="fas fa-arrow-left"></i> Back
     </button>
 
-    <h2 class="bookshelf-title">Daftar Buku General</h2>
+    <h2 class="bookshelf-title">Daftar Buku HRGA</h2>
     <div class="bookshelf">
         <div class="shelves" id="shelvesContainer">
             <div class="shelf has-books" id="shelf1">
@@ -124,7 +124,7 @@ $(document).ready(function () {
                 <div class="covers" id="coversContainer">
                     @foreach ($data as $index => $item)
                     <div class="thumb book-3" data-name="{{ $item->nama_buku }}" data-id="{{ $item->idbuku }}" data-image="{{ asset('storage/' . $item->image_buku) }}">
-                        <a href="/General/{{ $item->idbuku }}">
+                        <a href="/HRGA/{{ $item->idbuku }}">
                             <img src="{{ asset('storage/' . $item->image_buku) }}">
                         </a>
                     </div>
@@ -132,7 +132,7 @@ $(document).ready(function () {
                 </div>
             </div>
         </div>
-        <a href="UploadGeneral/create" class="btn-upload" id="uploadBtn">
+        <a href="UploadHRGA/create" class="btn-upload" id="uploadBtn">
             <button class="upload-btn">+ Upload File</button>
         </a>
     </div>
