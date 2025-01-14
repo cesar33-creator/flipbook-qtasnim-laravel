@@ -29,7 +29,13 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id',
+        'foto',
+        'gender',
+        'bio',
+        'phone_number',
     ];
+
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -49,10 +55,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'gender' => 'string', // ENUM disimpan sebagai string
     ];
 
     public function role()
     {
         return $this->belongsTo(Role::class, 'role_id');
     }
+
 }

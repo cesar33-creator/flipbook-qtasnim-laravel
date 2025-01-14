@@ -26,6 +26,9 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\FileUpload::make('foto')
+                    ->image()
+                    ->directory('photos'),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
@@ -42,6 +45,18 @@ class UserResource extends Resource
                     ->nullable()
                     ->maxLength(255)
                     ->hiddenOn('edit'),
+                Select::make('gender')
+                    ->label('Gender')
+                    ->options([
+                        'pria' => 'Pria',
+                        'wanita' => 'Wanita',
+                    ]),
+                Forms\Components\TextInput::make('bio')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('phone_number')
+                    ->required()
+                    ->maxLength(255),
             ]);
     }
 
@@ -49,6 +64,7 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('foto'),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
