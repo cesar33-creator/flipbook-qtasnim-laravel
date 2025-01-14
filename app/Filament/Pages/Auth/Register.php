@@ -10,6 +10,9 @@ use Filament\Forms\Form;
 use Spatie\Permission\Models\Role as ModelsRole;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\ImageColumn;
 
 class Register extends AuthRegister
 {
@@ -20,13 +23,28 @@ class Register extends AuthRegister
     public function form(Form $form): Form
     {
         return $form->schema([
-                        $this->getNameFormComponent(),
-                        $this->getEmailFormComponent(),
-                        $this->getPasswordFormComponent(),
-                        $this->getPasswordConfirmationFormComponent(),
-                        $this->getRoleFormComponent(),
-                    ])
-                    ->statePath('data');
+            $this->getNameFormComponent(),
+            $this->getEmailFormComponent(),
+            $this->getPasswordFormComponent(),
+            $this->getPasswordConfirmationFormComponent(),
+            $this->getRoleFormComponent(),
+
+            FileUpload::make('foto')
+                ->label('Foto')
+                ->image()
+                ->directory('photos'),
+            Select::make('gender')
+                ->label('Gender')
+                ->options([
+                    'pria' => 'Pria',
+                    'wanita' => 'Wanita',
+                ]),
+            TextInput::make('bio')
+                ->label('Bio'),
+            TextInput::make('phone_number')
+                ->label('Phone'),
+        ])
+            ->statePath('data');
     }
 
     protected function getRoleFormComponent(): Select
@@ -36,6 +54,4 @@ class Register extends AuthRegister
             ->required()
             ->label('Role');
     }
-
-
 }
