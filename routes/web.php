@@ -127,16 +127,22 @@ Route::get('/General/{idbuku}', [UploadGeneralController::class, 'show']);
 Route::delete('/General/{idbuku}', [UploadGeneralController::class, 'destroy'])->name('destroy');
 
 // Upload Pdf & Delete Buku Business
-Route::resource('/UploadBusiness', UploadBusinessController::class);
-Route::get('/Business', [UploadBusinessController::class, 'index']);
-Route::get('/Business/{idbuku}', [UploadBusinessController::class, 'show']);
-Route::delete('/Business/{idbuku}', [UploadBusinessController::class, 'destroy'])->name('destroy');
+Route::middleware(['auth', 'checkRole:5'])->group(function () {
+    Route::get('/Business', [UploadBusinessController::class, 'index'])->name('Business');
+});
+// Route::resource('/UploadBusiness', UploadBusinessController::class);
+// Route::get('/Business', [UploadBusinessController::class, 'index']);
+// Route::get('/Business/{idbuku}', [UploadBusinessController::class, 'show']);
+// Route::delete('/Business/{idbuku}', [UploadBusinessController::class, 'destroy'])->name('destroy');
 
 // Upload Pdf & Delete Buku Finance
-Route::resource('/UploadFinance', UploadFinanceController::class);
-Route::get('/Finance', [UploadFinanceController::class, 'index']);
-Route::get('/Finance/{idbuku}', [UploadFinanceController::class, 'show']);
-Route::delete('/Finance/{idbuku}', [UploadFinanceController::class, 'destroy'])->name('destroy');
+Route::middleware(['auth', 'checkRole:2'])->group(function () {
+    Route::get('/Finance', [UploadFinanceController::class, 'index'])->name('Finance');
+});
+// Route::resource('/UploadFinance', UploadFinanceController::class);
+// Route::get('/Finance', [UploadFinanceController::class, 'index']);
+// Route::get('/Finance/{idbuku}', [UploadFinanceController::class, 'show']);
+// Route::delete('/Finance/{idbuku}', [UploadFinanceController::class, 'destroy'])->name('destroy');
 
 // Upload Pdf & Delete Buku Healthcare
 Route::resource('/UploadHealthcare', UploadHealthcareController::class);

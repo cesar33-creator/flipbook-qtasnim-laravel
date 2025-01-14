@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Roles;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -29,6 +29,10 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id',
+        'foto',
+        'gender',
+        'bio',
+        'phone_number',
     ];
 
     /**

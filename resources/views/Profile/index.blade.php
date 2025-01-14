@@ -135,8 +135,8 @@
                             <i class="fas fa-upload"></i> Change Photo
                         </div>
                     </div>
-                    <h2><i id="genderIcon" class="fas fa-male"></i>{{ $user->name }}</h2>
-                    <p>{{ $user->role->roles }}</p>
+                    <h2><i id="genderIcon" class="fas fa-male gender-icon"></i>{{ $user->name }}</h2>
+                    <p>{{ $user->role->name}}</p>
                     <div class="info-box">
                         <!-- Left Icon Section -->
                         <div class="icon-section">
@@ -168,7 +168,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="role">Role</label>
-                        <input type="text" id="roles" name="roles" value="{{ $user->role->roles }}" disabled>
+                        <input type="text" id="roles" name="roles" value="{{ $user->role->name}}" disabled>
                     </div>
 
                     <div class="col-md-6">

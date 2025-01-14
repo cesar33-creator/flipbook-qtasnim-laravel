@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UploadFile;
+use App\Models\UploadBook;
 use Illuminate\Http\Request;
 
 class UploadPustakaController extends Controller
@@ -13,7 +13,7 @@ class UploadPustakaController extends Controller
     public function index()
     {
         //
-        $data = UploadFile::where('kategori', 'Pustaka')->latest()->get();
+        $data = UploadBook::where('kategori', 'Pustaka')->latest()->get();
         return  view('Pustaka.Pustaka', compact('data'));
     }
 
@@ -52,13 +52,13 @@ class UploadPustakaController extends Controller
         $validatedData['kategori'] = 'Pustaka'; // Tambahkan kategori
 
         // try{
-        //     UploadFile::create($validatedData);
+        //     UploadBook::create($validatedData);
         //     return redirect('/Pustaka')->with("Sukses", "File Terkirim Sukses");
         // }
         // catch(\Exception $e){
         //     return redirect('/Pustaka')->with("Gagal", "File Gagal Terkirim");
         // }
-        UploadFile::create($validatedData);
+        UploadBook::create($validatedData);
         return redirect('/Pustaka')->with("Sukses", "File Terkirim Sukses");
     }
 
@@ -74,7 +74,7 @@ class UploadPustakaController extends Controller
     public function show($id)
     {
         // Ambil data buku dari database berdasarkan ID
-        $data = UploadFile::findOrFail($id);
+        $data = UploadBook::findOrFail($id);
 
         // Path lengkap file PDF di storage
         $filePath = storage_path('app/public/' . $data->file_buku);
@@ -133,7 +133,7 @@ class UploadPustakaController extends Controller
     public function destroy(string $idbuku)
     {
         //
-        $data = UploadFile::findOrFail($idbuku);
+        $data = UploadBook::findOrFail($idbuku);
 
         $data->delete();
 

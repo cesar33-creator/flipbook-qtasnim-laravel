@@ -181,7 +181,7 @@
 
         <div class="row no-gutters"> <!-- Menambahkan kelas no-gutters -->
             <div class="col">
-            <a href="{{ url('Finance') }}">
+            <a href="{{ url('Finance') }}" >
                 <div class="category-card">
                     <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
                     <div class="overlay-icon">
@@ -207,7 +207,7 @@
             </a>
             </div>
             <div class="col">
-            <a href="{{ url('SystemDesign') }}">
+            <a href="{{ url('System') }}">
                 <div class="category-card">
                     <img src="{{ asset('assets/laci.png') }}" alt="Folder" class="folder-img">
                     <div class="overlay-icon">

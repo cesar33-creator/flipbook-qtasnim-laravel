@@ -283,6 +283,12 @@ body {
     line-height: 1.5;
 }
 
+.gender-icon {
+    font-size: 20px; /* Atur ukuran ikon */
+    margin-right: 10px; /* Opsional: Atur jarak jika diperlukan */
+    vertical-align: middle; /* Untuk merapikan posisi dengan teks */
+}
+
 
 
 @media (max-width: 768px) {
@@ -313,6 +319,8 @@ body {
     .profile-camera-icon {
      right: 85px;
     }
+
+    
 }
 
 

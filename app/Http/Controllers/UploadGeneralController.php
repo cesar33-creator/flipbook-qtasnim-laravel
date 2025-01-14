@@ -52,7 +52,7 @@ class UploadGeneralController extends Controller
         $validatedData['kategori'] = 'General'; // Tambahkan kategori
 
         // try{
-        //     UploadFile::create($validatedData);
+        //     UploadBook::create($validatedData);
         //     return redirect('/General')->with("Sukses", "File Terkirim Sukses");
         // }
         // catch(\Exception $e){

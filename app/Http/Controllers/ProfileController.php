@@ -15,8 +15,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $userId = 3; // Ganti dengan UID yang sesuai atau gunakan Auth::user()->id
-        $user = ManagementUsers::with('role')->where('uid', $userId)->first();
+        $userId = 2; // Ganti dengan UID yang sesuai atau gunakan Auth::user()->id
+        $user = ManagementUsers::with('role')->where('id', $userId)->first();
 
         if (!$user) {
             abort(404, 'Pengguna tidak ditemukan.');

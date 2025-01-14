@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Models\Role;
 
 class ManagementUsers extends Model
 {
@@ -16,14 +17,15 @@ class ManagementUsers extends Model
         'name',
         'email',
         'password',
-        'idroles',
+        'role_id',
         'gender',
         'phone_number',
         'bio'
     ];
 
+    // Relasi ke Role
     public function role()
     {
-        return $this->belongsTo(ManagementRoles::class, 'idroles', 'id');
+        return $this->belongsTo(role::class, 'role_id');
     }
 }
