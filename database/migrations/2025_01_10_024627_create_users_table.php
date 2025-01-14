@@ -18,6 +18,10 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->unsignedBigInteger('role_id')->nullable(); // Foreign key untuk role
+            $table->string('foto');
+            $table->enum('gender',['Pria','Wanita']);
+            $table->string('bio');
+            $table->string('phone_number');
             $table->rememberToken();
             $table->timestamps();
 
